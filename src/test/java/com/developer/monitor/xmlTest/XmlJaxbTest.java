@@ -5,17 +5,11 @@ import com.developer.monitor.domain.xmlTestData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.util.Assert;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -43,14 +37,19 @@ public class XmlJaxbTest {
         Assertions.assertNotNull(xmlListTest);
 
         List<xmlTestData> baseData = stream(xmlListTest.getXmlData()).collect(toList());
+
         Map<String,Integer> testData = baseData.stream().collect(Collectors.toMap(model->model.getModel(), price->price.getPrice()));
+
+        List<String> firmwareData = stream(xmlListTest.getXmlData()).map(firmware -> firmware.getFirmware()).collect(toList());
+
         List<String> data = stream(xmlListTest.getXmlData())
                 .map(model -> model.getModel()).collect(toList());
+
         List<Integer> dataPrice = stream(xmlListTest.getXmlData()).map(price -> price.getPrice()).collect(toList());
 
         System.out.println("baseData = " + baseData);
         System.out.println("testData = " + testData);
-        
+        System.out.println("firmwareData = " + firmwareData);
     }
 
 }

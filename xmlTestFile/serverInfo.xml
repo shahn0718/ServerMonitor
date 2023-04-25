@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+    <info>
+        <hostname>monitor</hostname>
+        <date>2023-04-19</date>
+        <time>11:21:39</time>
+        <osver>CentOS Linux release 7.6.1810 (Core)</osver>
+        <ipaddr>10.13.7.142</ipaddr>
+        <cpu_usage>0</cpu_usage>
+        <mem_usage>7</mem_usage>
+        <swap_usage>0</swap_usage>
+        <load_num>0</load_num>
+        <disk_usage>/,5</disk_usage>
+        <disk_usage>/boot,43</disk_usage>
+        <proc_chk>ftp,1</proc_chk>
+        <proc_chk>httpd,11</proc_chk>
+        <proc_chk>mysql,2</proc_chk>
+    </info>
+</server>
