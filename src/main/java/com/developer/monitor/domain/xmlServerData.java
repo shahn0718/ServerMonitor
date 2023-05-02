@@ -3,15 +3,18 @@ package com.developer.monitor.domain;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@Getter @Setter
+@Getter
 @ToString
 public class xmlServerData {
 
@@ -31,6 +34,11 @@ public class xmlServerData {
     private Long memUsage;
     @XmlElement(name="swap_usage")
     private Long swapUsage;
+    @XmlElement(name="disk_usage")
+    private List<String> diskUsage;
+    @XmlElement(name="proc_chk")
+    private List<String> proChk;
+
 
 
 

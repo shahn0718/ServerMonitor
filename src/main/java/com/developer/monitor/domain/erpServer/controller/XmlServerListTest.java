@@ -1,4 +1,4 @@
-package com.developer.monitor.controller;
+package com.developer.monitor.domain.erpServer.controller;
 
 import com.developer.monitor.domain.xmlServerData;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -12,7 +12,7 @@ import lombok.ToString;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="server")
-@Getter @Setter @ToString
+@Getter @ToString
 public class XmlServerListTest {
 
     @XmlElement(name="info")
