@@ -5,7 +5,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import com.developer.monitor.domain.etcServer.domain.etcServer;
 import com.developer.monitor.domain.xmlServerData;
+import com.developer.monitor.global.domain.xmlRootServer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,10 +36,17 @@ public class xmlServerDataTest  {
         XmlServerListTest xmlServerListTest = (XmlServerListTest) unmarshaller.unmarshal(fileInputStream);
         fileInputStream.close();
 
+        xmlRootServer xmlRootServerList = (xmlRootServer) unmarshaller.unmarshal(fileInputStream);
+        fileInputStream.close();
+
+
         //Then
         Assertions.assertNotNull(xmlServerListTest);
         List<xmlServerData> serverData = stream(xmlServerListTest.getServerData())
                 .collect(toList());
+
+
+
 
         System.out.println("serverData = " + serverData);
         System.out.println();
