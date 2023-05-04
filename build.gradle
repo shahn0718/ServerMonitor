@@ -26,6 +26,7 @@ dependencies {
 	implementation 'javax.activation:activation:1.1'
 	implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.2'
 	implementation 'org.glassfish.jaxb:jaxb-core:4.0.2'
+	implementation 'javax.activation:activation:1.1.1'
 	implementation 'com.sun.xml.bind:jaxb1-impl:2.2.5.1'
     testImplementation 'junit:junit:4.13.1'
     compileOnly 'org.projectlombok:lombok'

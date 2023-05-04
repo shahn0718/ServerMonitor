@@ -28,7 +28,7 @@ public class xmlServerDataTest  {
     public void serverData() throws JAXBException,IOException {
 
         //Given
-        FileInputStream fileInputStream = new FileInputStream("xmlTestFile/serverInfo.xml");
+        FileInputStream fileInputStream = new FileInputStream("");
         JAXBContext jaxbContext = JAXBContext.newInstance(XmlServerListTest.class);
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 

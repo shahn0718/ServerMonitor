@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+<h2>Thymeleaf Template Sample</h2>
+<h6>3. th:value 예시</h6>
+<tr th:each="item : ${serverData}">
+    <td th:text="${item.hostname}"></td>
+    <td th:text="${item.datetime}"></td>
+    <td th:text="${item.timeDate}"></td>
+    <td th:text="${item.osVersion}"></td>
+    <td th:text="${item.ipAddress}"></td>
+    <td th:text="${item.cpuUsage}"></td>
+    <td th:text="${item.memUsage}"></td>
+    <td th:text="${item.swapUsage}"></td>
+    <td th:text="${item.diskUsage}"></td>
+    <td th:text="${item.processChk}"></td>
+</body>
+</html>
