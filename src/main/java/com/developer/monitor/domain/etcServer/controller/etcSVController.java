@@ -1,7 +1,7 @@
 package com.developer.monitor.domain.etcServer.controller;
 
-import com.developer.monitor.domain.etcServer.domain.etcServer;
-import com.developer.monitor.global.domain.xmlRootServer;
+import com.developer.monitor.domain.etcServer.model.etcSVEntity;
+import com.developer.monitor.global.model.xmlRootServer;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -17,7 +17,7 @@ import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
 
 @Controller
-public class etcServerController {
+public class etcSVController {
 
     @GetMapping("/hello")
     public Model hello(Model model) throws JAXBException, IOException {
@@ -29,7 +29,7 @@ public class etcServerController {
         xmlRootServer xmlRootServerList = (xmlRootServer) unmarshaller.unmarshal(fileInputStream);
         fileInputStream.close();
 
-        List<etcServer> serverData = stream(xmlRootServerList.getEtcXmlServer())
+        List<etcSVEntity> serverData = stream(xmlRootServerList.getEtcXmlServer())
                 .collect(toList());
 
         System.out.println("serverData = " + serverData);

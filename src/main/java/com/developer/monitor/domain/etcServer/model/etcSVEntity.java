@@ -1,4 +1,4 @@
-package com.developer.monitor.domain.etcServer.domain;
+package com.developer.monitor.domain.etcServer.model;
 
 
 
@@ -13,8 +13,7 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Getter
 @ToString
-public class etcServer {
-
+public class etcSVEntity {
 
     @XmlElement(name="hostname")
     private String hostname;

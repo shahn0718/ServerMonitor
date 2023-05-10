@@ -5,9 +5,8 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-import com.developer.monitor.domain.etcServer.domain.etcServer;
 import com.developer.monitor.domain.xmlServerData;
-import com.developer.monitor.global.domain.xmlRootServer;
+import com.developer.monitor.global.model.xmlRootServer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
