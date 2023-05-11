@@ -1,12 +1,14 @@
 package com.developer.monitor.domain.etcServer.service;
 
-import com.developer.monitor.domain.etcServer.model.etcSVEntity;
+import com.developer.monitor.domain.etcServer.model.MXmlGetEtcSVEntity;
 import jakarta.xml.bind.JAXBException;
 
-import java.io.IOException;
 import java.util.List;
 
 public interface etcSVService {
 
-    List<etcSVEntity> getEtcSVData() throws Exception, JAXBException;
+
+    List<MXmlGetEtcSVEntity> getMainDataFromEtcSVData() throws Exception, JAXBException;
+    List<String> getDiskDatafromEtcSVData() throws Exception;
+    List<String> getProcessDatafromEtcSVData() throws Exception;
 }

@@ -11,9 +11,8 @@ import javax.xml.bind.annotation.XmlElement;
 import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@Getter
-@ToString
-public class etcSVEntity {
+@Getter @ToString
+public class MXmlGetEtcSVEntity {
 
     @XmlElement(name="hostname")
     private String hostname;

@@ -17,7 +17,6 @@ import static java.util.Arrays.stream;
 public class ScheduleTaskTest {
 
     //@Scheduled(fixedDelay= 10000)
-    @Scheduled(cron = "0 */5 * * * *")
     public void runEvery10Sec() throws JAXBException, IOException {
         log.info("runEvery10Sec");
 

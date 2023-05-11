@@ -1,40 +1,46 @@
 package com.developer.monitor.domain.etcServer.controller;
 
-import com.developer.monitor.domain.etcServer.model.etcSVEntity;
-import com.developer.monitor.global.model.xmlRootServer;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.developer.monitor.domain.etcServer.model.MXmlGetEtcSVEntity;
+import com.developer.monitor.domain.etcServer.service.etcSVService;
 
-import java.io.FileInputStream;
-import java.io.IOException;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+
 import java.util.List;
 
-import static java.util.Arrays.stream;
-import static java.util.stream.Collectors.toList;
 
 @Controller
+@Slf4j
 public class etcSVController {
 
-    @GetMapping("/hello")
-    public Model hello(Model model) throws JAXBException, IOException {
+    private etcSVService etcService;
 
-        FileInputStream fileInputStream = new FileInputStream("xmlTestFile/serverInfo.xml");
-        JAXBContext jaxbContext = JAXBContext.newInstance(xmlRootServer.class);
-        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+    public etcSVController(etcSVService etcService) {
+        this.etcService = etcService;
+    }
 
-        xmlRootServer xmlRootServerList = (xmlRootServer) unmarshaller.unmarshal(fileInputStream);
-        fileInputStream.close();
+    @RequestMapping(value="/hello", method={RequestMethod.POST})
+    @Scheduled(cron = "0 */5 * * * *")
+    public List<MXmlGetEtcSVEntity> getEtcSVDataList() throws Exception {
+        System.out.println("this.etcService.getEtcSVData().toString() = " + etcService.getMainDataFromEtcSVData().toString());
+        System.out.println("this.etcService.getDiskUsagefromEtcSVData().toString() = " + etcService.getDiskDatafromEtcSVData().toString());
+        System.out.println("this.etcService.getDiskUsagefromEtcSVData().toString() = " + etcService.getProcessDatafromEtcSVData().toString());
 
-        List<etcSVEntity> serverData = stream(xmlRootServerList.getEtcXmlServer())
-                .collect(toList());
+        log.info("runEvery10Sec");
+        return etcService.getMainDataFromEtcSVData();
+    }
 
-        System.out.println("serverData = " + serverData);
+    public List<String> getDiskUsageDataList() throws Exception {
+        return etcService.getDiskDatafromEtcSVData();
+    }
 
-        return model.addAttribute("serverData", serverData);
-
+    public List<String> getProcessChkDataList() throws Exception{
+        return etcService.getProcessDatafromEtcSVData();
     }
 }

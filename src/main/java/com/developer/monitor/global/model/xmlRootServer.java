@@ -1,6 +1,6 @@
 package com.developer.monitor.global.model;
 
-import com.developer.monitor.domain.etcServer.model.etcSVEntity;
+import com.developer.monitor.domain.etcServer.model.MXmlGetEtcSVEntity;
 import lombok.Getter;
 
 import lombok.ToString;
@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Getter @ToString
 public class xmlRootServer {
     @XmlElement(name="info")
-    private etcSVEntity[] etcXmlServer;
+    private MXmlGetEtcSVEntity[] etcXmlServer;
+
 
 }
