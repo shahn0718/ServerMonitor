@@ -34,4 +34,7 @@ public class MXmlGetEtcSVEntity {
     private List<String> diskUsage;
     @XmlElement(name="proc_chk")
     private List<String> processChk;
+
+    public MXmlGetEtcSVEntity(){
+    }
 }

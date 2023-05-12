@@ -11,4 +11,5 @@ public interface etcSVService {
     List<MXmlGetEtcSVEntity> getMainDataFromEtcSVData() throws Exception, JAXBException;
     List<String> getDiskDatafromEtcSVData() throws Exception;
     List<String> getProcessDatafromEtcSVData() throws Exception;
+
 }

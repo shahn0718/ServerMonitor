@@ -3,6 +3,30 @@
 
 <mapper namespace="com.developer.monitor.domain.etcServer.mapper.etcSVMapper">
 
+    <insert id="insertEtcSVMainData">
+        INSERT INTO  ETC_SV_MAIN (
+
+             ETC_SV_ID
+            ,ETC_SV_CD
+            ,ETC_SV_OS
+            ,ETC_SV_IP
+            ,ETC_SV_CPU_USAGE
+            ,ETC_SV_MEM_USAGE
+            ,ETC_SV_SWAP_USAGE
+            ,ETC_SV_DATETIME
+
+        ) VALUES (
+
+             10000
+            ,'TEST'
+            ,#{osVersion}
+            ,#{ipAddress}
+            ,#{cpuUsage}
+            ,#{memUsage}
+            ,#{swapUsage}
+            ,#{datetime}
+        )
+    </insert>
 
 
 
