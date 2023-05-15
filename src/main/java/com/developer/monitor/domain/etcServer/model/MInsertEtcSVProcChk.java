@@ -9,6 +9,8 @@ import lombok.ToString;
 @ToString
 public class MInsertEtcSVProcChk {
 
+    private int etcSVProcId;
+    private int etcSVId;
     private String etcSVProcCd;
     private String etcSVProcChk;
 }

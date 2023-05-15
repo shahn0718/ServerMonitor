@@ -9,6 +9,7 @@ import lombok.ToString;
 @ToString
 public class MInsertEtcSVMain {
 
+    private int etcSVId;
     private String etcSVCd;
     private String etcSVOs;
     private String etcSVIp;

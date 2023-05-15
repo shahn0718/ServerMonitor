@@ -3,7 +3,7 @@
     <info>
         <hostname>monitor</hostname>
         <date>2023-04-19</date>
-        <time>11:21:39</time>
+        <time>11:25:39</time>
         <osver>CentOS Linux release 7.6.1819 (Core)</osver>
         <ipaddr>10.13.7.142</ipaddr>
         <cpu_usage>0</cpu_usage>
@@ -12,8 +12,13 @@
         <load_num>0</load_num>
         <disk_usage>/,5</disk_usage>
         <disk_usage>/boot,43</disk_usage>
+        <disk_usage>/,5</disk_usage>
+        <disk_usage>/boot,43</disk_usage>
+        <disk_usage>/,5</disk_usage>
+        <disk_usage>/boot,43</disk_usage>
         <proc_chk>ftp,1</proc_chk>
         <proc_chk>httpd,11</proc_chk>
         <proc_chk>mysql,2</proc_chk>
+        <cluster_chk>webapps,event-5f97589cb5-hfnks,CrashLoopBackOff</cluster_chk>
     </info>
 </server>

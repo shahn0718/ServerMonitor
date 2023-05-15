@@ -7,8 +7,10 @@ import lombok.ToString;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.List;
+import java.util.Map;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Getter @ToString
@@ -32,6 +34,7 @@ public class MXmlGetEtcSVEntity {
     private Long swapUsage;
     @XmlElement(name="disk_usage")
     private List<String> diskUsage;
+
     @XmlElement(name="proc_chk")
     private List<String> processChk;
 

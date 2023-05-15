@@ -3,7 +3,8 @@
 
 <mapper namespace="com.developer.monitor.domain.etcServer.mapper.etcSVMapper">
 
-    <insert id="insertEtcSVMainData" parameterType="MInsertEtcSVMain">
+    <insert id="insertEtcSVMainData" parameterType="com.developer.monitor.domain.etcServer.model.MInsertEtcSVMain"
+        useGeneratedKeys="true" keyProperty="etcSVId">
         INSERT INTO  ETC_SV_MAIN (
 
              ETC_SV_ID
@@ -16,25 +17,31 @@
             ,ETC_SV_DATETIME
 
         ) VALUES (
-
-             10000
-            ,'TEST'
-            ,#{osVersion}
-            ,#{ipAddress}
-            ,#{cpuUsage}
-            ,#{memUsage}
-            ,#{swapUsage}
-            ,#{datetime}
+             #{etcSVId}
+            ,#{etcSVCd}
+            ,#{etcSVOs}
+            ,#{etcSVIp}
+            ,#{etcSVCpuUsage}
+            ,#{etcSVMemUsage}
+            ,#{etcSVSwapUsage}
+            ,STR_TO_DATE(#{etcSVDateTime},'%Y-%m-%d %H:%i:%s')
         )
     </insert>
-</mapper>
 
+    <insert id="insertEtcSVProcData" parameterType="com.developer.monitor.domain.etcServer.model.MInsertEtcSVProcChk"
+            useGeneratedKeys="true" keyProperty="etcSVId">
+        INSERT INTO  ETC_SV_PROCESS (
 
+         ETC_SV_PROC_ID
+        ,ETC_SV_ID
+        ,ETC_SV_PROC_CD
+        ,ETC_SV_PROC_CHK
 
-
-
-
-
-
-
+        ) VALUES (
+        (SELECT MAX(ETC_SV_PROC_ID)+1 FROM ETC_SV_PROCESS AS ETC_SV_PROC_ID)
+        ,#{etcSVId}
+        ,#{etcSVProcCd}
+        ,#{etcSVProcChk}
+        )
+    </insert>
 </mapper>
