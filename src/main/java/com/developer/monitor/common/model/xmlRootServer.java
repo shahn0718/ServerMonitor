@@ -1,4 +1,4 @@
-package com.developer.monitor.global.model;
+package com.developer.monitor.common.model;
 
 import com.developer.monitor.domain.etcServer.model.MXmlGetEtcSVEntity;
 import lombok.Getter;

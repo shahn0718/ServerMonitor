@@ -9,6 +9,9 @@ import lombok.ToString;
 @ToString
 public class MInsertEtcSVDiskUsage {
 
+
+    private int etcSVDiskId;
+    private int etcSVId;
     private String etcSVDiskCd;
     private String etcSVDiskUsage;
 }

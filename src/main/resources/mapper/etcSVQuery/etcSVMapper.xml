@@ -5,6 +5,8 @@
 
     <insert id="insertEtcSVMainData" parameterType="com.developer.monitor.domain.etcServer.model.MInsertEtcSVMain"
         useGeneratedKeys="true" keyProperty="etcSVId">
+        /* insertEtcSVMainData : */
+
         INSERT INTO  ETC_SV_MAIN (
 
              ETC_SV_ID
@@ -30,18 +32,42 @@
 
     <insert id="insertEtcSVProcData" parameterType="com.developer.monitor.domain.etcServer.model.MInsertEtcSVProcChk"
             useGeneratedKeys="true" keyProperty="etcSVId">
+        /* insertEtcSVProcData : */
+
         INSERT INTO  ETC_SV_PROCESS (
 
-         ETC_SV_PROC_ID
-        ,ETC_SV_ID
-        ,ETC_SV_PROC_CD
-        ,ETC_SV_PROC_CHK
+             ETC_SV_PROC_ID
+            ,ETC_SV_ID
+            ,ETC_SV_PROC_CD
+            ,ETC_SV_PROC_CHK
 
         ) VALUES (
-        (SELECT MAX(ETC_SV_PROC_ID)+1 FROM ETC_SV_PROCESS AS ETC_SV_PROC_ID)
-        ,#{etcSVId}
-        ,#{etcSVProcCd}
-        ,#{etcSVProcChk}
+
+            (SELECT MAX(ETC_SV_PROC_ID)+1 FROM ETC_SV_PROCESS AS ETC_SV_PROC_ID)
+            ,#{etcSVId}
+            ,#{etcSVProcCd}
+            ,#{etcSVProcChk}
+        )
+    </insert>
+
+
+    <insert id="insertEtcSVDiskData" parameterType="com.developer.monitor.domain.etcServer.model.MInsertEtcSVDiskUsage"
+            useGeneratedKeys="true" keyProperty="etcSVId">
+        /* insertEtcSVDiskData : */
+
+        INSERT INTO  ETC_SV_DISK (
+
+             ETC_SV_DISK_ID
+            ,ETC_SV_ID
+            ,ETC_SV_DISK_CD
+            ,ETC_SV_DISK_USAGE
+
+        ) VALUES (
+
+            (SELECT MAX(ETC_SV_DISK_ID)+1 FROM ETC_SV_DISK AS ETC_SV_DISK_ID)
+            ,#{etcSVId}
+            ,#{etcSVDiskCd}
+            ,#{etcSVDiskUsage}
         )
     </insert>
 </mapper>

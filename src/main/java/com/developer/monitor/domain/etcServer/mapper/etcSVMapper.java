@@ -13,8 +13,7 @@ public interface etcSVMapper {
 
     void insertEtcSVMainData(MInsertEtcSVMain mInsertEtcSVMain);
     void insertEtcSVProcData(MInsertEtcSVProcChk mInsertEtcSVProcChk);
-
-
-    public int insertEtcSVDiskData(MInsertEtcSVDiskUsage mInsertEtcSVDiskUsage) throws Exception;
+    void insertEtcSVDiskData(MInsertEtcSVDiskUsage mInsertEtcSVDiskUsage);
+    
     public int insertEtcSVProcessData(MInsertEtcSVProcChk mInsertEtcSVProcChk) throws Exception;
 }

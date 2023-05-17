@@ -27,12 +27,16 @@ public class etcSVController {
     @Scheduled(cron = "0 */5 * * * *")
     public void getEtcSVDataList() throws Exception {
 
-        MInsertEtcSVMain mInsertEtcSVMain = new MInsertEtcSVMain();
-        MInsertEtcSVProcChk mInsertEtcSVProcChk =new MInsertEtcSVProcChk();
-
-        etcService.toJsonFromEtcSVXmlData();
-        etcService.InsertEtcSVMainData(mInsertEtcSVMain);
-        etcService.InsertEtcSVProcData(mInsertEtcSVProcChk);
+//        MInsertEtcSVMain mInsertEtcSVMain = new MInsertEtcSVMain();
+//        MInsertEtcSVProcChk mInsertEtcSVProcChk =new MInsertEtcSVProcChk();
+//        MInsertEtcSVDiskUsage mInsertEtcSVDiskUsage = new MInsertEtcSVDiskUsage();
+//
+//        etcService.toJsonFromEtcSVXmlData();
+//
+          etcService.SendFileToJson();
+//        etcService.InsertEtcSVMainData(mInsertEtcSVMain);
+//        etcService.InsertEtcSVProcData(mInsertEtcSVProcChk);
+//        etcService.InsertEtcSVDiskData(mInsertEtcSVDiskUsage);
     }
 
     @RequestMapping(value="/insertData", method={RequestMethod.POST})
@@ -46,6 +50,15 @@ public class etcSVController {
     public String InsertTest(MInsertEtcSVProcChk mInsertEtcSVProcChk) throws Exception {
 
         etcService.InsertEtcSVProcData(mInsertEtcSVProcChk);
+        return "OK";
+    }
+
+    @RequestMapping(value="/getFileList", method={RequestMethod.POST})
+    public String getFileList() throws Exception {
+
+        //etcService.findFileList();
+
+        etcService.SendFileToJson();
         return "OK";
     }
 
