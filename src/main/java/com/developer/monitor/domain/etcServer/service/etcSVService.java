@@ -18,5 +18,5 @@ public interface etcSVService {
     String InsertEtcSVMainData(MInsertEtcSVMain mInsertEtcSVMain) throws Exception;
     String InsertEtcSVProcData(MInsertEtcSVProcChk mInsertEtcSVProcChk) throws Exception;
     String InsertEtcSVDiskData(MInsertEtcSVDiskUsage mInsertEtcSVDiskUsage) throws Exception;
-    public void SendFileToJson() throws Exception;
+//    public void SendFileToJson() throws Exception;
 }

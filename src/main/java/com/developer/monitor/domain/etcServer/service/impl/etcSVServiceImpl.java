@@ -36,12 +36,12 @@ public class etcSVServiceImpl implements etcSVService {
     //etcSVId (PK)
     private int etcSVPkId;
     private JsonNode jasonNode;
+    private ObjectMapper oM = new ObjectMapper();
 
     @Override
     public JsonNode toJsonFromEtcSVXmlData(String fileName) throws Exception, JAXBException {
 
-        String file = fileName;
-        FileInputStream fileInputStream = new FileInputStream(file);
+        FileInputStream fileInputStream = new FileInputStream(fileName);
         jasonNode = null;
 
         //JSON {"etcXmlServer":[{"hostname": ...
@@ -51,9 +51,6 @@ public class etcSVServiceImpl implements etcSVService {
         Object xmlEtcServerData =  unmarshaller.unmarshal(fileInputStream);
         fileInputStream.close();
 
-        ObjectMapper oM = new ObjectMapper();
-
-        // ObjectMapper oMapper = new ObjectMapper();
         //JSON {"etcXmlServer":[{"hostname": ...
         String makeJsonData= oM.writeValueAsString(xmlEtcServerData);
         log.info("makeJsonData = {} ",makeJsonData);
@@ -61,38 +58,34 @@ public class etcSVServiceImpl implements etcSVService {
 
         //JSON [{"hostname":"monitor"
         JsonNode jsonMainEtcData = etcXmlServerMainData.findValue("etcXmlServer");
-
         jasonNode = jsonMainEtcData;
         log.info("jsonMainEtcData = {}",jsonMainEtcData);
 
-        //JSON ["/,5","/boot,43"]
-        JsonNode jsonEtcDiskData = jsonMainEtcData.findValue("diskUsage");
-        log.info("jsonEtcDiskData = {}", jsonEtcDiskData);
-
-        // /,5
-        String s = jsonEtcDiskData.path(0).asText();
-
-        JsonNode jsonEtcProcData = jsonMainEtcData.findValue("processChk");
-        log.info("jsonEtcProcData = {}", jsonEtcProcData);
+//        //JSON ["/,5","/boot,43"]
+//        JsonNode jsonEtcDiskData = jsonMainEtcData.findValue("diskUsage");
+//        log.info("jsonEtcDiskData = {}", jsonEtcDiskData);
+//
+//        // /,5
+//        String s = jsonEtcDiskData.path(0).asText();
+//
+//        JsonNode jsonEtcProcData = jsonMainEtcData.findValue("processChk");
+//        log.info("jsonEtcProcData = {}", jsonEtcProcData);
 
         MInsertEtcSVMain mInsertEtcSVMain = new MInsertEtcSVMain();
         MInsertEtcSVProcChk mInsertEtcSVProcChk =new MInsertEtcSVProcChk();
         MInsertEtcSVDiskUsage mInsertEtcSVDiskUsage = new MInsertEtcSVDiskUsage();
 
-//        etcService.toJsonFromEtcSVXmlData();
         InsertEtcSVMainData(mInsertEtcSVMain);
         InsertEtcSVProcData(mInsertEtcSVProcChk);
         InsertEtcSVDiskData(mInsertEtcSVDiskUsage);
 
         return jsonMainEtcData;
-
     }
 
     @Override
-    public String InsertEtcSVMainData(MInsertEtcSVMain mInsertEtcSVMain) throws Exception {
+    public String InsertEtcSVMainData( MInsertEtcSVMain mInsertEtcSVMain) throws Exception {
 
         JsonNode etcSVInsertMainData = jasonNode;
-        log.info("etcSVInsertMainData = {}" , etcSVInsertMainData);
 
         mInsertEtcSVMain.setEtcSVId(mInsertEtcSVMain.getEtcSVId());
         mInsertEtcSVMain.setEtcSVCd(String.valueOf(etcSVInsertMainData.findValue("hostname").asText()));
@@ -113,8 +106,6 @@ public class etcSVServiceImpl implements etcSVService {
     public String InsertEtcSVProcData(MInsertEtcSVProcChk mInsertEtcSVProcChk) throws Exception {
 
         JsonNode etcSVInsertProcData = jasonNode;
-        log.info("etcSVInsertProcData = {}" , etcSVInsertProcData);
-
         JsonNode processChk = etcSVInsertProcData.findValue("processChk");
        
         List<String> procJsonTolist = new ArrayList<>();
@@ -175,16 +166,15 @@ public class etcSVServiceImpl implements etcSVService {
         for(MInsertEtcSVDiskUsage mInsertEtcSVDiskUsageData: insertDbDiskList){
             etcSVMapper.insertEtcSVDiskData(mInsertEtcSVDiskUsageData);
         }
-
-        return "";
+        return " ";
     }
-    @Override
-    public void SendFileToJson() throws Exception{
-
-        String filePath = "C:\\\\upIt\\\\monitor\\\\monitor\\\\xmlTestFile";
-        List<File> fileList = common.getFileFromDir(filePath);;
-        for(File fileName : fileList){
-            toJsonFromEtcSVXmlData(String.valueOf(fileName));
-        }
-    }
+//    @Override
+//    public void SendFileToJson() throws Exception{
+//
+//        String filePath = "C:\\\\upIt\\\\monitor\\\\monitor\\\\xmlTestFile";
+//        List<File> fileList = common.getFileFromDir(filePath);;
+//        for(File fileName : fileList){
+//            toJsonFromEtcSVXmlData(String.valueOf(fileName));
+//        }
+//    }
 }
