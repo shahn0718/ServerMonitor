@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+    <info>
+        <hostname>donga-backup</hostname>
+        <date>2023-05-23</date>
+        <time>14:40:01</time>
+        <osver>CentOS Stream release 8</osver>
+        <ipaddr>10.75.1.57</ipaddr>
+        <cpu_usage>0</cpu_usage>
+        <mem_usage>1</mem_usage>
+        <swap_usage>0</swap_usage>
+        <load_num>0</load_num>
+        <disk_usage>/,46</disk_usage>
+        <disk_usage>/boot,19</disk_usage>
+        <disk_usage>/boot/efi,2</disk_usage>
+        <proc_chk>netvault,38</proc_chk>
+    </info>
+</server>

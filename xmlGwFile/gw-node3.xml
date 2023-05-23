@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+    <info>
+        <hostname>gw-node3</hostname>
+        <date>2023-05-23</date>
+        <time>15:10:01</time>
+        <osver>CentOS Linux release 7.6.1810 (Core)</osver>
+        <ipaddr>10.14.21.13</ipaddr>
+        <cpu_usage>3</cpu_usage>
+        <mem_usage>45</mem_usage>
+        <load_num>2</load_num>
+        <disk_usage>/,38</disk_usage>
+        <disk_usage>/boot,9</disk_usage>
+        <disk_usage>/boot/efi,6</disk_usage>
+        <disk_usage>/data,2</disk_usage>
+        <disk_usage>/home,4</disk_usage>
+        <disk_usage>/var,1</disk_usage>
+        <disk_usage>/var/tmp,1</disk_usage>
+        <disk_usage>/var/log,17</disk_usage>
+        <disk_usage>/var/log/audit,2</disk_usage>
+        <disk_usage>/var/lib/docker,51</disk_usage>
+        <disk_usage>/gw_nas,40</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/2c00c3af-1cea-4520-81a7-709d9ce48e8c/volumes/kubernetes.io~csi/pvc-07c73bd4-fe58-4bdd-b1a1-ea05211dd02c/mount,10</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/8291e3db-0e9a-43dd-90d0-c2886e6fffa1/volumes/kubernetes.io~csi/pvc-fcb28109-f529-41a6-b389-71e37870112c/mount,46</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/cea18dce-efda-477e-8f78-358d83afc210/volumes/kubernetes.io~csi/pvc-349d4345-52f8-475c-8ce4-9412edff648c/mount,14</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/808fc625-6aa2-42f2-a57c-1f12672b8379/volumes/kubernetes.io~csi/pvc-c47e8d80-402b-42cd-80a8-300cfe9c0cf3/mount,1</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/808fc625-6aa2-42f2-a57c-1f12672b8379/volumes/kubernetes.io~csi/pvc-5d1fea4a-489a-4359-901f-9a3f1c606156/mount,6</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/8107d7b1-f4a9-42cd-93c2-7733bcf6c3d1/volumes/kubernetes.io~csi/pvc-b128513c-38fb-4cca-94d0-f086b41e86a2/mount,17</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/f5fec4e3-3e90-4e2b-a9c9-5e01247a48b7/volumes/kubernetes.io~csi/pvc-fe38e0ae-ebfe-4cee-8468-ea0b4ec000fc/mount,36</disk_usage>
+        <proc_chk>java,29</proc_chk>
+        <proc_chk>mysql,12</proc_chk>
+    </info>
+</server>

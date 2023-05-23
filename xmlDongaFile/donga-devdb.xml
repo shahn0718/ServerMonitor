@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+    <info>
+        <hostname>donga-devdb</hostname>
+        <date>2023-05-23</date>
+        <time>14:50:01</time>
+        <osver>CentOS Stream release 8</osver>
+        <ipaddr>10.75.1.56</ipaddr>
+        <cpu_usage>8</cpu_usage>
+        <mem_usage>13</mem_usage>
+        <swap_usage>63</swap_usage>
+        <load_num>1</load_num>
+        <disk_usage>/,26</disk_usage>
+        <disk_usage>/boot,38</disk_usage>
+        <disk_usage>/boot/efi,2</disk_usage>
+        <disk_usage>/home,61</disk_usage>
+        <proc_chk>ora,198</proc_chk>
+        <proc_chk>tns,2</proc_chk>
+    </info>
+</server>

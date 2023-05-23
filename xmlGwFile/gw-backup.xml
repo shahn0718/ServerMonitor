@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+    <info>
+        <hostname>gw-backup</hostname>
+        <date>2023-05-23</date>
+        <time>15:00:01</time>
+        <osver>CentOS Linux release 7.8.2003 (Core)</osver>
+        <ipaddr>10.14.21.31</ipaddr>
+        <cpu_usage>18</cpu_usage>
+        <mem_usage>19</mem_usage>
+        <swap_usage>0</swap_usage>
+        <load_num>0</load_num>
+        <disk_usage>/,32</disk_usage>
+        <disk_usage>/boot,26</disk_usage>
+        <disk_usage>/boot/efi,3</disk_usage>
+        <disk_usage>/home,59</disk_usage>
+        <disk_usage>/gw_nas,42</disk_usage>
+        <proc_chk>netbackup,35</proc_chk>
+    </info>
+</server>

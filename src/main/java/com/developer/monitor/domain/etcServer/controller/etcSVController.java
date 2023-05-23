@@ -35,7 +35,6 @@ public class etcSVController {
     @PostMapping(value="/getEtcSVDataList")
     @Scheduled(cron = "0 */5 * * * *")
     public void getEtcSVDataList() throws Exception {
-
         ServerFilePath filePath = new ServerFilePath();
         List<File> fileListFromDir = cmnService.getFileFromDir(filePath.etcSVFilePath);
         for(File fileName: fileListFromDir){
@@ -45,9 +44,6 @@ public class etcSVController {
 
     @RequestMapping(value="/insertProcData", method={RequestMethod.POST})
     public String InsertTest(MInsertEtcSVMain mInsertEtcSVMain) throws Exception {
-
-
-
 
         etcService.InsertEtcSVMainData(mInsertEtcSVMain);
         return "OK";

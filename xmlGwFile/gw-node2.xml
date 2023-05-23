@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+    <info>
+        <hostname>gw-node2</hostname>
+        <date>2023-05-23</date>
+        <time>15:00:01</time>
+        <osver>CentOS Linux release 7.6.1810 (Core)</osver>
+        <ipaddr>10.14.21.12</ipaddr>
+        <cpu_usage>3</cpu_usage>
+        <mem_usage>29</mem_usage>
+        <load_num>1</load_num>
+        <disk_usage>/,38</disk_usage>
+        <disk_usage>/boot,9</disk_usage>
+        <disk_usage>/boot/efi,6</disk_usage>
+        <disk_usage>/data,2</disk_usage>
+        <disk_usage>/home,4</disk_usage>
+        <disk_usage>/var,1</disk_usage>
+        <disk_usage>/var/log,18</disk_usage>
+        <disk_usage>/var/tmp,1</disk_usage>
+        <disk_usage>/var/log/audit,2</disk_usage>
+        <disk_usage>/var/lib/docker,10</disk_usage>
+        <disk_usage>/gw_nas,40</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/1d916f02-31f9-4b08-9862-07079a19e378/volumes/kubernetes.io~csi/pvc-8bf49852-af6f-4fc0-a862-2e540e60fbd9/mount,1</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/77cabc6b-cbb3-4845-88b1-d1d5d8ede2de/volumes/kubernetes.io~csi/pvc-47e46184-56f9-43e3-9d94-89a95e08a1a6/mount,10</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/1cec1d0b-3753-4bbd-91f7-e1879c916659/volumes/kubernetes.io~csi/pvc-25effca8-7803-4add-9f0b-51bebc2ca165/mount,45</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/8051a45a-6d92-4da6-be2d-9e38cfa37a16/volumes/kubernetes.io~csi/pvc-a1d2ca7c-12c9-4156-bdaa-b93d0dcb8e29/mount,1</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/e2ea5b67-cbed-4aa6-b604-519d15b9e94c/volumes/kubernetes.io~csi/pvc-193e4860-8d91-4df6-810d-c0bce5b2fd47/mount,2</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/e2ea5b67-cbed-4aa6-b604-519d15b9e94c/volumes/kubernetes.io~csi/pvc-36d64ba3-749f-4e6c-b69a-e8021bc646a2/mount,2</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/5d4e2c54-ff54-4385-80c1-2f83b5948d02/volumes/kubernetes.io~csi/pvc-acfd86ab-f0c7-42ad-839a-0d93d2b0dc92/mount,1</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/070adc56-3e2e-4443-aee4-b4589647528d/volumes/kubernetes.io~csi/pvc-1230352e-3420-4cc9-bb68-a16eda50dd6a/mount,40</disk_usage>
+        <proc_chk>java,26</proc_chk>
+        <proc_chk>mysql,11</proc_chk>
+    </info>
+</server>

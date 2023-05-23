@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+    <info>
+        <hostname>gw-arch5</hostname>
+        <date>2023-05-23</date>
+        <time>15:00:01</time>
+        <osver>Red Hat Enterprise Linux release 8.4 (Ootpa)</osver>
+        <ipaddr>10.14.21.200</ipaddr>
+        <cpu_usage>8</cpu_usage>
+        <mem_usage>4</mem_usage>
+        <load_num>0</load_num>
+        <disk_usage>/,66</disk_usage>
+        <disk_usage>/duzon_data,40</disk_usage>
+        <disk_usage>/arch5,14</disk_usage>
+        <proc_chk>httpd,6</proc_chk>
+        <proc_chk>arch5,2</proc_chk>
+        <proc_chk>mysql,1</proc_chk>
+    </info>
+</server>
