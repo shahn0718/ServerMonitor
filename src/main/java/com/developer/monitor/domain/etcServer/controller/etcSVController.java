@@ -2,15 +2,12 @@ package com.developer.monitor.domain.etcServer.controller;
 
 import com.developer.monitor.common.model.ServerFilePath;
 import com.developer.monitor.common.service.CommonService;
-import com.developer.monitor.domain.etcServer.mapper.etcSVMapper;
-import com.developer.monitor.domain.etcServer.model.MInsertEtcSVDiskUsage;
 import com.developer.monitor.domain.etcServer.model.MInsertEtcSVMain;
 import com.developer.monitor.domain.etcServer.model.MInsertEtcSVProcChk;
-import com.developer.monitor.domain.etcServer.model.MXmlGetEtcSVEntity;
 import com.developer.monitor.domain.etcServer.service.etcSVService;
 
 
-import com.fasterxml.jackson.databind.JsonNode;
+import com.developer.monitor.domain.gwServer.service.gwSVService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -29,6 +26,9 @@ public class etcSVController {
 
     @Autowired
     private etcSVService etcService;
+
+    @Autowired
+    private gwSVService gwService;
     @Autowired
     private CommonService cmnService;
 
@@ -39,6 +39,7 @@ public class etcSVController {
         List<File> fileListFromDir = cmnService.getFileFromDir(filePath.etcSVFilePath);
         for(File fileName: fileListFromDir){
             etcService.toJsonFromEtcSVXmlData(String.valueOf(fileName));
+
         }
     }
 

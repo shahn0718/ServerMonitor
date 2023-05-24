@@ -6,7 +6,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
 import com.developer.monitor.domain.xmlServerData;
-import com.developer.monitor.common.model.xmlRootServer;
+import com.developer.monitor.common.model.XmlRootServer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,7 +35,7 @@ public class xmlServerDataTest  {
         XmlServerListTest xmlServerListTest = (XmlServerListTest) unmarshaller.unmarshal(fileInputStream);
         fileInputStream.close();
 
-        xmlRootServer xmlRootServerList = (xmlRootServer) unmarshaller.unmarshal(fileInputStream);
+        XmlRootServer xmlRootServerList = (XmlRootServer) unmarshaller.unmarshal(fileInputStream);
         fileInputStream.close();
 
 

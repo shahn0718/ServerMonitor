@@ -18,5 +18,4 @@ public class MInsertEtcSVMain {
     private String etcSVSwapUsage;
     private String etcSVDateTime;
 
-
 }

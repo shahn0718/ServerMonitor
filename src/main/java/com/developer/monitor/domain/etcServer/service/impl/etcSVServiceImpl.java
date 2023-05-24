@@ -1,13 +1,12 @@
 package com.developer.monitor.domain.etcServer.service.impl;
 
 
-import com.developer.monitor.common.service.CommonService;
 import com.developer.monitor.domain.etcServer.mapper.etcSVMapper;
 import com.developer.monitor.domain.etcServer.model.MInsertEtcSVDiskUsage;
 import com.developer.monitor.domain.etcServer.model.MInsertEtcSVMain;
 import com.developer.monitor.domain.etcServer.model.MInsertEtcSVProcChk;
 import com.developer.monitor.domain.etcServer.service.etcSVService;
-import com.developer.monitor.common.model.xmlRootServer;
+import com.developer.monitor.common.model.XmlRootServer;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -18,7 +17,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.util.*;
 
@@ -29,23 +27,20 @@ import static java.util.Arrays.stream;
 public class etcSVServiceImpl implements etcSVService {
 
     @Autowired
-    private etcSVMapper etcSVMapper;
-    @Autowired
-    private CommonService common;
-
+    private etcSVMapper etcMapper;
     //etcSVId (PK)
     private int etcSVPkId;
-    private JsonNode jasonNode;
+    private JsonNode jsonNode;
     private ObjectMapper oM = new ObjectMapper();
 
     @Override
     public JsonNode toJsonFromEtcSVXmlData(String fileName) throws Exception, JAXBException {
 
         FileInputStream fileInputStream = new FileInputStream(fileName);
-        jasonNode = null;
+        jsonNode = null;
 
         //JSON {"etcXmlServer":[{"hostname": ...
-        JAXBContext jaxbContext = JAXBContext.newInstance(xmlRootServer.class);
+        JAXBContext jaxbContext = JAXBContext.newInstance(XmlRootServer.class);
 
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         Object xmlEtcServerData =  unmarshaller.unmarshal(fileInputStream);
@@ -58,7 +53,7 @@ public class etcSVServiceImpl implements etcSVService {
 
         //JSON [{"hostname":"monitor"
         JsonNode jsonMainEtcData = etcXmlServerMainData.findValue("etcXmlServer");
-        jasonNode = jsonMainEtcData;
+        jsonNode = jsonMainEtcData;
         log.info("jsonMainEtcData = {}",jsonMainEtcData);
 
 //        //JSON ["/,5","/boot,43"]
@@ -71,13 +66,13 @@ public class etcSVServiceImpl implements etcSVService {
 //        JsonNode jsonEtcProcData = jsonMainEtcData.findValue("processChk");
 //        log.info("jsonEtcProcData = {}", jsonEtcProcData);
 
-        MInsertEtcSVMain mInsertEtcSVMain = new MInsertEtcSVMain();
-        MInsertEtcSVProcChk mInsertEtcSVProcChk =new MInsertEtcSVProcChk();
-        MInsertEtcSVDiskUsage mInsertEtcSVDiskUsage = new MInsertEtcSVDiskUsage();
-
-        InsertEtcSVMainData(mInsertEtcSVMain);
-        InsertEtcSVProcData(mInsertEtcSVProcChk);
-        InsertEtcSVDiskData(mInsertEtcSVDiskUsage);
+//        MInsertEtcSVMain mInsertEtcSVMain = new MInsertEtcSVMain();
+//        MInsertEtcSVProcChk mInsertEtcSVProcChk =new MInsertEtcSVProcChk();
+//        MInsertEtcSVDiskUsage mInsertEtcSVDiskUsage = new MInsertEtcSVDiskUsage();
+//
+//        InsertEtcSVMainData(mInsertEtcSVMain);
+//        InsertEtcSVProcData(mInsertEtcSVProcChk);
+//        InsertEtcSVDiskData(mInsertEtcSVDiskUsage);
 
         return jsonMainEtcData;
     }
@@ -85,7 +80,7 @@ public class etcSVServiceImpl implements etcSVService {
     @Override
     public String InsertEtcSVMainData( MInsertEtcSVMain mInsertEtcSVMain) throws Exception {
 
-        JsonNode etcSVInsertMainData = jasonNode;
+        JsonNode etcSVInsertMainData = jsonNode;
 
         mInsertEtcSVMain.setEtcSVId(mInsertEtcSVMain.getEtcSVId());
         mInsertEtcSVMain.setEtcSVCd(String.valueOf(etcSVInsertMainData.findValue("hostname").asText()));
@@ -96,7 +91,7 @@ public class etcSVServiceImpl implements etcSVService {
         mInsertEtcSVMain.setEtcSVSwapUsage(etcSVInsertMainData.findValue("swapUsage").asText());
         mInsertEtcSVMain.setEtcSVDateTime(String.valueOf(etcSVInsertMainData.findValue("datetime").asText()) + String.valueOf(etcSVInsertMainData.findValue("timeDate").asText()));
 
-        etcSVMapper.insertEtcSVMainData(mInsertEtcSVMain);
+        etcMapper.insertEtcSVMainData(mInsertEtcSVMain);
         etcSVPkId = mInsertEtcSVMain.getEtcSVId();
 
         return "OK";
@@ -105,16 +100,16 @@ public class etcSVServiceImpl implements etcSVService {
     @Override
     public String InsertEtcSVProcData(MInsertEtcSVProcChk mInsertEtcSVProcChk) throws Exception {
 
-        JsonNode etcSVInsertProcData = jasonNode;
+        JsonNode etcSVInsertProcData = jsonNode;
         JsonNode processChk = etcSVInsertProcData.findValue("processChk");
        
-        List<String> procJsonTolist = new ArrayList<>();
+        List<String> procJsonToList = new ArrayList<>();
         for (JsonNode jsonNode : processChk) {
-            procJsonTolist.add(jsonNode.asText());
+            procJsonToList.add(jsonNode.asText());
         }
         
         HashMap<String,String> procMap = new HashMap<>();
-        for (String data : procJsonTolist) {
+        for (String data : procJsonToList) {
             String[] array = data.split(",");
             procMap.put(array[0],array[1]);
         }
@@ -131,7 +126,7 @@ public class etcSVServiceImpl implements etcSVService {
         }
         //Insert 하기
         for(MInsertEtcSVProcChk mInsertEtcSVProcChkData: insertDbProcList){
-            etcSVMapper.insertEtcSVProcData(mInsertEtcSVProcChkData);
+            etcMapper.insertEtcSVProcData(mInsertEtcSVProcChkData);
         }
         return "OK";
     }
@@ -139,7 +134,7 @@ public class etcSVServiceImpl implements etcSVService {
     @Override
     public String InsertEtcSVDiskData(MInsertEtcSVDiskUsage mInsertEtcSVDiskUsage) throws Exception {
 
-        JsonNode etcSVInsertDiskData = jasonNode;
+        JsonNode etcSVInsertDiskData = jsonNode;
 
         JsonNode diskUsage = etcSVInsertDiskData.findValue("diskUsage");
 
@@ -164,7 +159,7 @@ public class etcSVServiceImpl implements etcSVService {
         }
         //Insert
         for(MInsertEtcSVDiskUsage mInsertEtcSVDiskUsageData: insertDbDiskList){
-            etcSVMapper.insertEtcSVDiskData(mInsertEtcSVDiskUsageData);
+            etcMapper.insertEtcSVDiskData(mInsertEtcSVDiskUsageData);
         }
         return " ";
     }
