@@ -78,7 +78,7 @@ public class etcSVServiceImpl implements etcSVService {
     }
 
     @Override
-    public String InsertEtcSVMainData( MInsertEtcSVMain mInsertEtcSVMain) throws Exception {
+    public String InsertEtcSVMainData(MInsertEtcSVMain mInsertEtcSVMain) throws Exception {
 
         JsonNode etcSVInsertMainData = jsonNode;
 

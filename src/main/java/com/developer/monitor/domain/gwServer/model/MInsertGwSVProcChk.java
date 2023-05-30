@@ -12,5 +12,5 @@ public class MInsertGwSVProcChk {
     private int gwSVProcId;
     private int gwSVId;
     private String gwSVProcCd;
-    private String gwSVProcUsage;
+    private String gwSVProcChk;
 }

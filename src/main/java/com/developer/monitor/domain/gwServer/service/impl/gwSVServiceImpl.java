@@ -64,7 +64,7 @@ public class gwSVServiceImpl implements gwSVService {
 //        InsertGwSVMainData(mInsertGwSVMain);
 //        InsertGwSVProcData(mInsertGwSVProcChk);
 //        InsertGwSVDiskData(mInsertGwSVDiskUsage);
-//        InsertGwSVClustData(mInsertGwSVClustChk);
+      InsertGwSVClustData(mInsertGwSVClustChk);
 
         return null;
     }
@@ -72,9 +72,20 @@ public class gwSVServiceImpl implements gwSVService {
     @Override
     public String InsertGwSVMainData(MInsertGwSVMain mInsertGwSVMain) throws Exception {
 
-        //JsonNode gwSVInsertMainData = jsonNode;
-        //
+        JsonNode gwSVInsertMainData = jsonNode;
 
+        mInsertGwSVMain.setGwSVId(mInsertGwSVMain.getGwSVId());
+        mInsertGwSVMain.setGwSVCd(String.valueOf(gwSVInsertMainData.findValue("hostname").asText()));
+        mInsertGwSVMain.setGwSVOs(String.valueOf(gwSVInsertMainData.findValue("osVersion").asText()));
+        mInsertGwSVMain.setGwSVIp(String.valueOf(gwSVInsertMainData.findValue("ipAddress").asText()));
+        mInsertGwSVMain.setGwSVCpuUsage(gwSVInsertMainData.findValue("cpuUsage").asText());
+        mInsertGwSVMain.setGwSVMemUsage(gwSVInsertMainData.findValue("memUsage").asText());
+        mInsertGwSVMain.setGwSVSwapUsage(gwSVInsertMainData.findValue("swapUsage").asText());
+        mInsertGwSVMain.setGwSVClustUsage(String.valueOf(gwSVInsertMainData.findValue("clusterChk").asText()));
+        mInsertGwSVMain.setGwSVDateTime(String.valueOf(gwSVInsertMainData.findValue("datetime").asText()) + String.valueOf(gwSVInsertMainData.findValue("timeDate").asText()));
+
+        //Mapper
+        //pKID
 
 
 
@@ -104,11 +115,17 @@ public class gwSVServiceImpl implements gwSVService {
             /**
              *
              */
+            MInsertGwSVProcChk mInsertGwSVProcChkData = new MInsertGwSVProcChk();
+            mInsertGwSVProcChkData.setGwSVId(gwSVPkId);
+            mInsertGwSVProcChkData.setGwSVProcCd(key);
+            mInsertGwSVProcChkData.setGwSVProcChk(procMap.get(key));
+            insertDbProcList.add(mInsertGwSVProcChkData);
         }
         for(MInsertGwSVProcChk mInsertGwSVProcChkData : insertDbProcList){
             /**
              *
              */
+            //Mapper
         }
 
 
@@ -117,11 +134,60 @@ public class gwSVServiceImpl implements gwSVService {
 
     @Override
     public String InsertGwSVDiskData(MInsertGwSVDiskUsage mInsertGwSVDiskUsage) throws Exception {
-        return null;
+
+        JsonNode gwSVInsertDiskData = jsonNode;
+        JsonNode diskUsage = gwSVInsertDiskData.findValue("diskUsage");
+
+        List<String> diskJsonToList = new ArrayList<>();
+        for(JsonNode jsonNode: diskUsage){
+            diskJsonToList.add(jsonNode.asText());
+        }
+        HashMap<String,String> diskMap = new HashMap<>();
+        for(String data: diskJsonToList){
+            String[] array = data.split(",");
+            diskMap.put(array[0],array[1]);
+        }
+
+        List<MInsertGwSVDiskUsage> insertDbDiskList = new ArrayList<>();
+        Set<String> keySet = diskMap.keySet();
+        for(String key: keySet){
+            MInsertGwSVDiskUsage mInsertGwSVDiskUsageData = new MInsertGwSVDiskUsage();
+            mInsertGwSVDiskUsageData.setGwSVId(gwSVPkId);
+            mInsertGwSVDiskUsageData.setGwSVDiskCd(key);
+            mInsertGwSVDiskUsageData.setGwSVDiskUsage(diskMap.get(key));
+            insertDbDiskList.add(mInsertGwSVDiskUsageData);
+        }
+
+        //Insert
+        for(MInsertGwSVDiskUsage mInsertGwSVDiskUsageData : insertDbDiskList){
+            /**
+             *
+             */
+            //Mapper
+        }
+        return "";
+
     }
 
     @Override
     public String InsertGwSVClustData(MInsertGwSVClustChk mInsertGwSVClustChk) throws Exception {
+
+        /**
+         *         <cluster_chk>kube-system,coredns-6f57957999-bl8fh,Pending</cluster_chk>
+         */
+
+        JsonNode gwSVInsertClustData = jsonNode;
+        JsonNode clustUsage = gwSVInsertClustData.findValue("clusterChk");
+
+        List<String> clustJsonToList = new ArrayList<>();
+        for(JsonNode jsonNode : clustUsage){
+            clustJsonToList.add(jsonNode.asText());
+        }
+        System.out.println("clustJsonToList = " + clustJsonToList);
+
+
+
+
         return null;
     }
 }

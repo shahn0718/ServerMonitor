@@ -36,10 +36,10 @@ public class etcSVController {
     @Scheduled(cron = "0 */5 * * * *")
     public void getEtcSVDataList() throws Exception {
         ServerFilePath filePath = new ServerFilePath();
-        List<File> fileListFromDir = cmnService.getFileFromDir(filePath.etcSVFilePath);
+        List<File> fileListFromDir = cmnService.getFileFromDir(filePath.gwSVFilePath);
         for(File fileName: fileListFromDir){
-            etcService.toJsonFromEtcSVXmlData(String.valueOf(fileName));
-
+           // etcService.toJsonFromEtcSVXmlData(String.valueOf(fileName));
+            gwService.toJsonFromGwSVXmlData(String.valueOf(fileName));
         }
     }
 
