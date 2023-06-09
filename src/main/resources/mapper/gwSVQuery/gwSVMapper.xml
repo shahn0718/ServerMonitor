@@ -3,18 +3,90 @@
 
 <mapper namespace="com.developer.monitor.domain.gwServer.mapper.gwSVMapper">
 
-   <insert id="insertgwSVMainData" parameterType="com.developer.monitor.domain.gwServer.model.MInsertGwSVMain"
+   <insert id="insertGwSVMainData" parameterType="com.developer.monitor.domain.gwServer.model.MInsertGwSVMain"
+           useGeneratedKeys="true" keyProperty="gwSVId">
+
+      /*insertGwSVMainData*/
+
+      INSERT INTO GW_SV_MAIN (
+
+          GW_SV_ID
+         ,GW_SV_CD
+         ,GW_SV_OS
+         ,GW_SV_IP
+         ,GW_SV_CPU_USAGE
+         ,GW_SV_MEM_USAGE
+         ,GW_SV_SWAP_USAGE
+         ,GW_SV_CLUST_USAGE
+         ,GW_SV_DATETIME
+
+      ) VALUES (
+         #{gwSVId}
+         ,#{gwSVCd}
+         ,#{gwSVOs}
+         ,#{gwSVIp}
+         ,#{gwSVCpuUsage}
+         ,#{gwSVMemUsage}
+         ,#{gwSVSwapUsage}
+         ,#{gwSVClustUsage}
+         ,STR_TO_DATE(#{gwSVDateTime},'%Y-%m-%d %H:%i:%s')
+      )
+   </insert>
+
+   <insert id="insertGwSVProcData" parameterType="com.developer.monitor.domain.gwServer.model.MInsertGwSVProcChk"
+           useGeneratedKeys="true" keyProperty="gwSVId">
+
+      /* insertEtcSVProcData : */
+
+      INSERT INTO GW_SV_PROCESS (
+
+          GW_SV_PROC_ID
+         ,GW_SV_ID
+         ,GW_SV_PROC_CD
+         ,GW_SV_PROC_CHK
+
+      ) VALUES (
+
+          (SELECT MAX(GW_SV_PROC_ID)+1 FROM GW_SV_PROCESS AS GW_SV_PROC_ID)
+         ,#{gwSVId}
+         ,#{gwSVProcCd}
+         ,#{gwSVProcChk}
+
+      )
+
+   </insert>
+
+   <insert id="insertGwSVDiskData" parameterType="com.developer.monitor.domain.gwServer.model.MInsertGwSVDiskUsage"
+           useGeneratedKeys="true" keyProperty="gwSVId">
+
+      /* insertEtcSVDiskData : */
+
+      INSERT INTO GW_SV_DISK (
+
+          GW_SV_DISK_ID
+         ,GW_SV_ID
+         ,GW_SV_DISK_CD
+         ,GW_SV_DISK_USAGE
+
+      ) VALUES (
+
+          (SELECT MAX(GW_SV_DISK_ID)+1 FROM GW_SV_DISK AS GW_SV_DISK_ID)
+         ,#{gwSVId}
+         ,#{gwSVDiskCd}
+         ,#{gwSVDiskUsage}
+
+      )
+   </insert>
+
+   <insert id="insertGwClustData" parameterType="com.developer.monitor.domain.gwServer.model.MInsertGwSVClustChk"
            useGeneratedKeys="true" keyProperty="gwSVId">
 
 
 
 
-    </insert>
 
 
-
-
-
+   </insert>
 
 
 

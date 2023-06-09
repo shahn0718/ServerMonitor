@@ -28,8 +28,15 @@
         <disk_usage>/var/lib/kubelet/pods/5d0a5c3e-f00c-4cda-8197-0c421850b42e/volumes/kubernetes.io~csi/pvc-2dd2dca0-17e2-4253-b1f6-4949ca75119b/mount,1</disk_usage>
         <disk_usage>/var/lib/kubelet/pods/dde5fbf1-ebe3-46fa-ba8e-6953c7470c8f/volumes/kubernetes.io~csi/pvc-6b64cabf-73b9-407a-b9df-144ae9f8dd96/mount,1</disk_usage>
         <disk_usage>/var/lib/kubelet/pods/d0fc0323-a4a6-40a8-99c8-b3fc7c62109d/volumes/kubernetes.io~csi/pvc-79c688aa-da21-481d-9bcd-97b1a990d0f9/mount,21</disk_usage>
-        <disk_usage>/var/lib/kubelet/pods/6897f99f-5a12-44dc-ac6d-598a67dcbdf4/volume-subpaths/pvc-a5cec669-a2b4-4869-9718-0e0d79293160/prometheus/2,3</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/6897f99f-5a12-44dc-ac6d-598a67dcbdf4/volume-subpaths/pvc-a5cec669-a2b4-4869-9718-0e0d79293160/prometheus/2,3,pending</disk_usage>
         <proc_chk>java,25</proc_chk>
         <proc_chk>mysql,15</proc_chk>
+        <cluster_chk>daemon,scheduler-75464fc78-67jsq,Terminating</cluster_chk>
+        <cluster_chk>diamanti-system,collectd-v0.8-6xxjc,Terminating</cluster_chk>
+        <cluster_chk>diamanti-system,prometheus-v1-2,ContainerCreating</cluster_chk>
+        <cluster_chk>elastic,elasticdump-cronjob-28104120-6kkrf,ImagePullBackOff</cluster_chk>
+        <cluster_chk>mariadb,cronjob-mysqldump-28102499-wzq4v,ContainerCreating</cluster_chk>
+        <cluster_chk>system-upgrade,system-upgrade-controller-57d94ff8f-89qzc,Pending</cluster_chk>
+        <cluster_chk>system-upgrade,system-upgrade-controller-57d94ff8f-kpzd9,Terminating</cluster_chk>
     </info>
 </server>

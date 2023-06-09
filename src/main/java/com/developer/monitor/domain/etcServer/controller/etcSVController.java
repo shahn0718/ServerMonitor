@@ -26,50 +26,41 @@ public class etcSVController {
 
     @Autowired
     private etcSVService etcService;
-
     @Autowired
     private gwSVService gwService;
     @Autowired
     private CommonService cmnService;
 
-    @PostMapping(value="/getEtcSVDataList")
-    @Scheduled(cron = "0 */5 * * * *")
-    public void getEtcSVDataList() throws Exception {
+    @PostMapping(value = "/getEtcSVXmlList")
+    //@Scheduled(cron = "0 */5 * * * *")
+    @Scheduled(cron = "20 * * * * *")
+    public void getEtcSVXmlList() throws Exception {
         ServerFilePath filePath = new ServerFilePath();
-        List<File> fileListFromDir = cmnService.getFileFromDir(filePath.gwSVFilePath);
-        for(File fileName: fileListFromDir){
-           // etcService.toJsonFromEtcSVXmlData(String.valueOf(fileName));
-            gwService.toJsonFromGwSVXmlData(String.valueOf(fileName));
+        List<File> fileListFromDir = cmnService.getFileFromDir(filePath.etcSVFilePath);
+        for (File fileName : fileListFromDir) {
+//            etcService.toJsonFromEtcSVXmlData(String.valueOf(fileName));
+            System.out.println(fileName + " " + " ETC");
         }
     }
 
-    @RequestMapping(value="/insertProcData", method={RequestMethod.POST})
+    @RequestMapping(value = "/insertProcData", method = {RequestMethod.POST})
     public String InsertTest(MInsertEtcSVMain mInsertEtcSVMain) throws Exception {
 
         etcService.InsertEtcSVMainData(mInsertEtcSVMain);
         return "OK";
     }
 
-    @RequestMapping(value="/insertDisk", method={RequestMethod.POST})
+    @RequestMapping(value = "/insertDisk", method = {RequestMethod.POST})
     public String InsertTest(MInsertEtcSVProcChk mInsertEtcSVProcChk) throws Exception {
 
         etcService.InsertEtcSVProcData(mInsertEtcSVProcChk);
         return "OK";
     }
 
-    @RequestMapping(value="/getFileList", method={RequestMethod.POST})
+    @RequestMapping(value = "/getFileList", method = {RequestMethod.POST})
     public String getFileList() throws Exception {
 
         //etcService.findFileList();
         return "OK";
     }
-
-
-//    public List<String> getDiskUsageDataList() throws Exception {
-//        return etcService.getDiskDatafromEtcSVData();
-//    }
-//
-//    public List<String> getProcessChkDataList() throws Exception{
-//        return etcService.getProcessDatafromEtcSVData();
-//    }
 }

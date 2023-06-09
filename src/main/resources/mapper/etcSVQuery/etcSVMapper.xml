@@ -43,7 +43,7 @@
 
         ) VALUES (
 
-            (SELECT MAX(ETC_SV_PROC_ID)+1 FROM ETC_SV_PROCESS AS ETC_SV_PROC_ID)
+             (SELECT MAX(ETC_SV_PROC_ID)+1 FROM ETC_SV_PROCESS AS ETC_SV_PROC_ID)
             ,#{etcSVId}
             ,#{etcSVProcCd}
             ,#{etcSVProcChk}

@@ -9,6 +9,11 @@ import lombok.ToString;
 @ToString
 public class MInsertEtcSVProcChk {
 
+    /**
+     * <proc_chk>mySql,2</proc_chk>
+     * <proc_chk>NameSpace(CD), Usage</proc_chk>
+     *
+     */
     private int etcSVProcId;
     private int etcSVId;
     private String etcSVProcCd;

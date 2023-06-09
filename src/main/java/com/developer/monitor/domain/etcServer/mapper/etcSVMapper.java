@@ -5,7 +5,6 @@ import com.developer.monitor.domain.etcServer.model.MInsertEtcSVMain;
 import com.developer.monitor.domain.etcServer.model.MInsertEtcSVProcChk;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
 
 @Mapper
 public interface etcSVMapper {

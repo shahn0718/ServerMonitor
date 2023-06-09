@@ -9,6 +9,11 @@ import lombok.ToString;
 @ToString
 public class MInsertGwSVProcChk {
 
+    /**
+     * <proc_chk>mySql,2</proc_chk>
+     * <proc_chk>NameSpace(CD), Usage</proc_chk>
+     *
+     */
     private int gwSVProcId;
     private int gwSVId;
     private String gwSVProcCd;

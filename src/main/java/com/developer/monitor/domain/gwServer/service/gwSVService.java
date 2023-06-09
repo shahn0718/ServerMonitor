@@ -13,8 +13,8 @@ import javax.xml.bind.JAXBException;
 public interface gwSVService {
 
     JsonNode toJsonFromGwSVXmlData(String fileName) throws Exception, JAXBException;
-    String InsertGwSVMainData(MInsertGwSVMain mInsertGwSVMain) throws Exception;
-    String InsertGwSVProcData(MInsertGwSVProcChk mInsertGwSVProcChk) throws Exception;
-    String InsertGwSVDiskData(MInsertGwSVDiskUsage mInsertGwSVDiskUsage) throws Exception;
-    String InsertGwSVClustData(MInsertGwSVClustChk mInsertGwSVClustChk) throws Exception;
+    void InsertGwSVMainData(MInsertGwSVMain mInsertGwSVMain) throws Exception;
+    void InsertGwSVProcData(MInsertGwSVProcChk mInsertGwSVProcChk) throws Exception;
+    void InsertGwSVDiskData(MInsertGwSVDiskUsage mInsertGwSVDiskUsage) throws Exception;
+    void InsertGwSVClustData(MInsertGwSVClustChk mInsertGwSVClustChk) throws Exception;
 }

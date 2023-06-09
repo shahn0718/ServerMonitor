@@ -28,7 +28,6 @@ public class etcSVServiceImpl implements etcSVService {
 
     @Autowired
     private etcSVMapper etcMapper;
-    //etcSVId (PK)
     private int etcSVPkId;
     private JsonNode jsonNode;
     private ObjectMapper oM = new ObjectMapper();
