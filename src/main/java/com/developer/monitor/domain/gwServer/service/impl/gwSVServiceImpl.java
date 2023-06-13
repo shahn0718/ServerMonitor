@@ -57,12 +57,12 @@ public class gwSVServiceImpl implements gwSVService {
 
         MInsertGwSVMain mInsertGwSVMain = new MInsertGwSVMain();
         MInsertGwSVProcChk mInsertGwSVProcChk =new MInsertGwSVProcChk();
-//        MInsertGwSVDiskUsage mInsertGwSVDiskUsage = new MInsertGwSVDiskUsage();
-       MInsertGwSVClustChk mInsertGwSVClustChk = new MInsertGwSVClustChk();
+        MInsertGwSVDiskUsage mInsertGwSVDiskUsage = new MInsertGwSVDiskUsage();
+        MInsertGwSVClustChk mInsertGwSVClustChk = new MInsertGwSVClustChk();
 
         InsertGwSVMainData(mInsertGwSVMain);
         InsertGwSVProcData(mInsertGwSVProcChk);
-//        InsertGwSVDiskData(mInsertGwSVDiskUsage);
+        InsertGwSVDiskData(mInsertGwSVDiskUsage);
         InsertGwSVClustData(mInsertGwSVClustChk);
 
         return null;
@@ -111,17 +111,16 @@ public class gwSVServiceImpl implements gwSVService {
             mInsertGwSVProcChkData.setGwSVProcChk(procMap.get(key));
             insertDbProcList.add(mInsertGwSVProcChkData);
         }
-
         /**
          * procMap = {java=25, mysql=15}
          * keySet = [java, mysql]
          *
          */
-        System.out.println("procMap = " + procMap);
-        System.out.println("keySet = " + keySet);
-//        for(MInsertGwSVProcChk mInsertGwSVProcChkData : insertDbProcList){
-//            gwMapper.insertGwSVProcData(mInsertGwSVProcChkData);
-//        }
+        log.info("procMap = {} ",procMap);
+
+        for(MInsertGwSVProcChk mInsertGwSVProcChkData : insertDbProcList){
+            gwMapper.insertGwSVProcData(mInsertGwSVProcChkData);
+        }
     }
 
     @Override
@@ -134,12 +133,15 @@ public class gwSVServiceImpl implements gwSVService {
         for(JsonNode jsonNode: diskUsage){
             diskJsonToList.add(jsonNode.asText());
         }
+
         HashMap<String,String> diskMap = new HashMap<>();
         for(String data: diskJsonToList){
             String[] array = data.split(",");
             diskMap.put(array[0],array[1]);
         }
-        System.out.println("diskMap = " + diskMap);
+
+        log.info("diskMap = {} ",diskMap);
+
         List<MInsertGwSVDiskUsage> insertDbDiskList = new ArrayList<>();
         Set<String> keySet = diskMap.keySet();
         for(String key: keySet){
@@ -171,8 +173,6 @@ public class gwSVServiceImpl implements gwSVService {
         for(JsonNode jsonNode : clustUsage){
             clustJsonToList.add(jsonNode.asText());
         }
-        System.out.println("clustJsonToList = " + clustJsonToList);
-        System.out.println("clustJsonToList.size() = " + clustJsonToList.size());
 
         /**
          *  clustJsonToList (ArrayList) 에서 ',' 기준으로 분리 → array
@@ -181,17 +181,48 @@ public class gwSVServiceImpl implements gwSVService {
          *  status에 따라서 인수가 2 or 3 개 생김
          */
         HashMap<String,String> clustMap = new HashMap<>();
+        List<String> clustList = new ArrayList<>();
+
+        //향후, 수정이 필요한 부분이되지 않을까?
         for(String data: clustJsonToList){
             String[] array = data.split(",");
             if(array.length > 2){
-                System.out.println("array.length = " + array.length);
-                System.out.println("array[0] = " + array[0]);
-                System.out.println("array[0] = " + array[1]);
-                System.out.println("array[0] = " + array[2]);
+                for(int i=0; i<array.length; i++)
+                    clustList.add(array[i]);
             }else{
-                System.out.println("array.length(2) = " +  array.length);
                 clustMap.put(array[0],array[1]);
             }
+        }
+
+        log.info("clustList = {} ",clustList);
+        log.info("clustMap = {} ",clustMap);
+
+        List<MInsertGwSVClustChk> insertDbClustList = new ArrayList<>();
+        int cnt=0;
+        int listNum=0;
+        while(cnt<clustList.size()/3) {
+            MInsertGwSVClustChk mInsertGwSVClustChkData = new MInsertGwSVClustChk();
+            mInsertGwSVClustChkData.setGwSVId(gwSVPkId);
+            mInsertGwSVClustChkData.setGwSVClustCd(clustList.get(listNum));
+            mInsertGwSVClustChkData.setGwSVClustPodName(clustList.get(listNum+1));
+            mInsertGwSVClustChkData.setGwSVClustStatus(clustList.get(listNum+2));
+            insertDbClustList.add(mInsertGwSVClustChkData);
+            cnt+=1;
+            listNum+=3;
+        }
+        Set<String> keySet = clustMap.keySet();
+        if(!clustMap.isEmpty()){
+            for(String key: keySet){
+                MInsertGwSVClustChk mInsertGwSVClustChkData = new MInsertGwSVClustChk();
+                mInsertGwSVClustChkData.setGwSVId(gwSVPkId);
+                mInsertGwSVClustChkData.setGwSVClustCd(key);
+                mInsertGwSVClustChkData.setGwSVClustPodName(clustMap.get(key));
+                insertDbClustList.add(mInsertGwSVClustChkData);
+            }
+        }
+        //Insert
+        for(MInsertGwSVClustChk mInsertGwSVClustChkData : insertDbClustList){
+            gwMapper.insertGwSVClustData(mInsertGwSVClustChkData);
         }
     }
 }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+    <info>
+        <hostname>gw-node4</hostname>
+        <date>2023-05-23</date>
+        <time>15:10:01</time>
+        <osver>CentOS Linux release 7.6.1810 (Core)</osver>
+        <ipaddr>10.14.21.14</ipaddr>
+        <cpu_usage>7</cpu_usage>
+        <mem_usage>38</mem_usage>
+        <load_num>2</load_num>
+        <disk_usage>/,38</disk_usage>
+        <disk_usage>/boot,9</disk_usage>
+        <disk_usage>/boot/efi,6</disk_usage>
+        <disk_usage>/home,5</disk_usage>
+        <disk_usage>/data,1</disk_usage>
+        <disk_usage>/var,1</disk_usage>
+        <disk_usage>/var/tmp,1</disk_usage>
+        <disk_usage>/var/lib/docker,16</disk_usage>
+        <disk_usage>/var/log,17</disk_usage>
+        <disk_usage>/var/log/audit,2</disk_usage>
+        <disk_usage>/gw_nas,40</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/cd5b4071-ac35-41cd-8c17-eed980d71aef/volumes/kubernetes.io~csi/pvc-437d42e2-48d8-4b18-bfe0-b12d6dfece06/mount,46</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/ff6561c4-3d3f-4529-905e-357fb5cff7c6/volumes/kubernetes.io~csi/pvc-5f14bd0c-6f58-49a6-b5c6-aa4bae45765a/mount,10</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/52126996-ccc6-4775-9acf-a8d72ddce618/volumes/kubernetes.io~csi/pvc-7c0bb06c-51a1-4a33-9435-7458e18e1156/mount,10</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/86d45b9f-93d9-4af4-8cf8-f86cf07f8921/volumes/kubernetes.io~csi/pvc-f963479a-a562-4a41-b433-03703033dbdd/mount,1</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/5d0a5c3e-f00c-4cda-8197-0c421850b42e/volumes/kubernetes.io~csi/pvc-3c8ecfdc-d5e1-434f-bb31-519f4ebbb6ca/mount,3</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/5d0a5c3e-f00c-4cda-8197-0c421850b42e/volumes/kubernetes.io~csi/pvc-2dd2dca0-17e2-4253-b1f6-4949ca75119b/mount,1</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/dde5fbf1-ebe3-46fa-ba8e-6953c7470c8f/volumes/kubernetes.io~csi/pvc-6b64cabf-73b9-407a-b9df-144ae9f8dd96/mount,1</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/d0fc0323-a4a6-40a8-99c8-b3fc7c62109d/volumes/kubernetes.io~csi/pvc-79c688aa-da21-481d-9bcd-97b1a990d0f9/mount,21</disk_usage>
+        <disk_usage>/var/lib/kubelet/pods/6897f99f-5a12-44dc-ac6d-598a67dcbdf4/volume-subpaths/pvc-a5cec669-a2b4-4869-9718-0e0d79293160/prometheus/2,3,pending</disk_usage>
+        <proc_chk>java,25</proc_chk>
+        <proc_chk>mysql,15</proc_chk>
+        <cluster_chk>daemon,scheduler-75464fc78-67jsq,Terminating</cluster_chk>
+        <cluster_chk>diamanti-system,collectd-v0.8-6xxjc</cluster_chk>
+        <cluster_chk>diamanti-system,prometheus-v1-2</cluster_chk>
+        <cluster_chk>elastic,elasticdump-cronjob-28104120-6kkrf,ImagePullBackOff</cluster_chk>
+        <cluster_chk>mariadb,cronjob-mysqldump-28102499-wzq4v,ContainerCreating</cluster_chk>
+        <cluster_chk>system-upgrade,system-upgrade-controller-57d94ff8f-89qzc,Pending</cluster_chk>
+        <cluster_chk>system-upgrade,system-upgrade-controller-57d94ff8f-kpzd9,Terminating</cluster_chk>
+    </info>
+</server>

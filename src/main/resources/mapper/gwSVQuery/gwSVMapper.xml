@@ -36,7 +36,7 @@
    <insert id="insertGwSVProcData" parameterType="com.developer.monitor.domain.gwServer.model.MInsertGwSVProcChk"
            useGeneratedKeys="true" keyProperty="gwSVId">
 
-      /* insertEtcSVProcData : */
+      /* insertGwSVProcData : */
 
       INSERT INTO GW_SV_PROCESS (
 
@@ -59,7 +59,7 @@
    <insert id="insertGwSVDiskData" parameterType="com.developer.monitor.domain.gwServer.model.MInsertGwSVDiskUsage"
            useGeneratedKeys="true" keyProperty="gwSVId">
 
-      /* insertEtcSVDiskData : */
+      /* insertGwSVDiskData : */
 
       INSERT INTO GW_SV_DISK (
 
@@ -78,22 +78,28 @@
       )
    </insert>
 
-   <insert id="insertGwClustData" parameterType="com.developer.monitor.domain.gwServer.model.MInsertGwSVClustChk"
+   <insert id="insertGwSVClustData" parameterType="com.developer.monitor.domain.gwServer.model.MInsertGwSVClustChk"
            useGeneratedKeys="true" keyProperty="gwSVId">
 
+      /* insertGwSVClustData : */
 
+      INSERT INTO GW_SV_CLUSTER (
 
+       GW_SV_CLUST_ID
+      ,GW_SV_ID
+      ,GW_SV_CLUST_CD
+      ,GW_SV_CLUST_NAME
+      ,GW_SV_CLUST_STAT
 
+      ) VALUES (
 
+      (SELECT MAX(GW_SV_CLUST_ID)+1 FROM GW_SV_CLUSTER AS GW_SV_CLUST_ID)
+      ,#{gwSVId}
+      ,#{gwSVClustCd}
+      ,#{gwSVClustPodName}
+      ,#{gwSVClustStatus}
+
+      )
 
    </insert>
-
-
-
-
-
-
-
-
-
 </mapper>
