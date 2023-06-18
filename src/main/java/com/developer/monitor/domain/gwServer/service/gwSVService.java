@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBException;
+import java.io.File;
 
 @Service
 public interface gwSVService {
@@ -17,4 +18,5 @@ public interface gwSVService {
     void InsertGwSVProcData(MInsertGwSVProcChk mInsertGwSVProcChk) throws Exception;
     void InsertGwSVDiskData(MInsertGwSVDiskUsage mInsertGwSVDiskUsage) throws Exception;
     void InsertGwSVClustData(MInsertGwSVClustChk mInsertGwSVClustChk) throws Exception;
+
 }
