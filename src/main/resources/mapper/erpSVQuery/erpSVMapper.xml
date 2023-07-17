@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.developer.monitor.domain.erpServer.mapper.erpSVMapper">
+
+    <insert id="insertErpSVMainData" parameterType="com.developer.monitor.domain.erpServer.model.MInsertErpSVMain"
+            useGeneratedKeys="true" keyProperty="erpSVId">
+            /* insertErpSVMainData : */
+
+            INSERT INTO  ERP_SV_MAIN (
+
+                ERP_SV_ID
+               ,ERP_SV_CD
+               ,ERP_SV_OS
+               ,ERP_SV_IP
+               ,ERP_SV_CPU_USAGE
+               ,ERP_SV_MEM_USAGE
+               ,ERP_SV_SWAP_USAGE
+               ,ERP_SV_DATETIME
+
+            ) VALUES (
+                #{erpSVId}
+               ,#{erpSVCd}
+               ,#{erpSVOs}
+               ,#{erpSVIp}
+               ,#{erpSVCpuUsage}
+               ,#{erpSVMemUsage}
+               ,#{erpSVSwapUsage}
+               ,STR_TO_DATE(#{erpSVDateTime},'%Y-%m-%d %H:%i:%s')
+
+            )
+    </insert>
+
+    <insert id="insertErpSVProcData" parameterType="com.developer.monitor.domain.erpServer.model.MInsertErpSVProcChk"
+            useGeneratedKeys="true" keyProperty="erpSVId">
+        /* insertErpSVProcData : */
+
+        INSERT INTO ERP_SV_PROCESS (
+
+            ERP_SV_PROC_ID
+           ,ERP_SV_ID
+           ,ERP_SV_PROC_CD
+           ,ERP_SV_PROC_CHK
+
+        ) VALUES (
+
+            (SELECT MAX(ERP_SV_PROC_ID)+1 FROM ERP_SV_PROCESS AS ERP_SV_PROC_ID)
+            ,#{erpSVId}
+            ,#{erpSVProcCd}
+            ,#{erpSVProcChk}
+
+        )
+    </insert>
+
+
+
+    <insert id="insertErpSVDiskData" parameterType="com.developer.monitor.domain.erpServer.model.MInsertErpSVDiskUsage"
+            useGeneratedKeys="true" keyProperty="erpSVId">
+
+        /* insertErpSVDiskDate : */
+
+        INSERT INTO ERP_SV_DISK (
+
+            ERP_SV_DISK_ID
+           ,ERP_SV_ID
+           ,ERP_SV_DISK_CD
+           ,ERP_SV_DISK_USAGE
+
+        ) VALUES (
+
+           (SELECT MAX(ERP_SV_DISK_ID)+1 FROM ERP_SV_DISK AS ERP_SV_DISK_ID)
+           ,#{erpSVId}
+           ,#{erpSVDiskCd}
+           ,#{erpSVDiskUsage}
+
+        )
+    </insert>
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

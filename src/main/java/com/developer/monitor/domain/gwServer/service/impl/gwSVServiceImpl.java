@@ -1,7 +1,6 @@
 package com.developer.monitor.domain.gwServer.service.impl;
 
 import com.developer.monitor.common.model.XmlRootServer;
-import com.developer.monitor.common.service.CommonService;
 import com.developer.monitor.domain.gwServer.mapper.gwSVMapper;
 import com.developer.monitor.domain.gwServer.model.MInsertGwSVClustChk;
 import com.developer.monitor.domain.gwServer.model.MInsertGwSVDiskUsage;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Service;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,16 +46,16 @@ public class gwSVServiceImpl implements gwSVService {
 
         //JSON {"etcXmlServer":[{"hostname": ...
         String makeJsonData = oM.writeValueAsString(xmlGwServerData);
-        log.info("makeJsonData = {} ",makeJsonData);
+        log.info("makeJsonData = {} ", makeJsonData);
         JsonNode gwXmlServerMainData = oM.readValue(makeJsonData, JsonNode.class);
 
         //JSON [{"hostname":"monitor"
-        JsonNode jsonMainGwData = gwXmlServerMainData.findValue("etcXmlServer");
+        JsonNode jsonMainGwData = gwXmlServerMainData.findValue("xmlServerData");
         jsonNode = jsonMainGwData;
-        log.info("jsonMainGwData = {}",jsonMainGwData);
+        log.info("jsonMainGwData = {}", jsonMainGwData);
 
         MInsertGwSVMain mInsertGwSVMain = new MInsertGwSVMain();
-        MInsertGwSVProcChk mInsertGwSVProcChk =new MInsertGwSVProcChk();
+        MInsertGwSVProcChk mInsertGwSVProcChk = new MInsertGwSVProcChk();
         MInsertGwSVDiskUsage mInsertGwSVDiskUsage = new MInsertGwSVDiskUsage();
         MInsertGwSVClustChk mInsertGwSVClustChk = new MInsertGwSVClustChk();
 
@@ -66,7 +64,8 @@ public class gwSVServiceImpl implements gwSVService {
         InsertGwSVDiskData(mInsertGwSVDiskUsage);
         InsertGwSVClustData(mInsertGwSVClustChk);
 
-        return null;
+        return jsonMainGwData;
+
     }
 
     @Override

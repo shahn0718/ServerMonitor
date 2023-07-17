@@ -2,6 +2,7 @@ package com.developer.monitor.domain.etcServer.controller;
 
 import com.developer.monitor.common.model.ServerFilePath;
 import com.developer.monitor.common.service.CommonService;
+import com.developer.monitor.domain.etcServer.model.MInsertEtcSVDiskUsage;
 import com.developer.monitor.domain.etcServer.model.MInsertEtcSVMain;
 import com.developer.monitor.domain.etcServer.model.MInsertEtcSVProcChk;
 import com.developer.monitor.domain.etcServer.service.etcSVService;
@@ -27,40 +28,35 @@ public class etcSVController {
     @Autowired
     private etcSVService etcService;
     @Autowired
-    private gwSVService gwService;
-    @Autowired
     private CommonService cmnService;
 
     @PostMapping(value = "/getEtcSVXmlList")
     //@Scheduled(cron = "0 */5 * * * *")
     @Scheduled(cron = "20 * * * * *")
     public void getEtcSVXmlList() throws Exception {
+        /**
+         *  toJsonFromEtcSVXmlData 여기에 insertMain / insertDisk / insertProc 포함.
+         */
         ServerFilePath filePath = new ServerFilePath();
         List<File> fileListFromDir = cmnService.getFileFromDir(filePath.etcSVFilePath);
         for (File fileName : fileListFromDir) {
-//            etcService.toJsonFromEtcSVXmlData(String.valueOf(fileName));
-            System.out.println(fileName + " " + " ETC");
+            log.info("etcSVFileName = {}", fileName);
+            etcService.toJsonFromEtcSVXmlData(String.valueOf(fileName));
         }
     }
-
-    @RequestMapping(value = "/insertProcData", method = {RequestMethod.POST})
-    public String InsertTest(MInsertEtcSVMain mInsertEtcSVMain) throws Exception {
-
+    @RequestMapping(value = "/insertEtcMain", method = {RequestMethod.POST})
+    public String insertEtcSVMainData(MInsertEtcSVMain mInsertEtcSVMain) throws Exception {
         etcService.InsertEtcSVMainData(mInsertEtcSVMain);
         return "OK";
     }
-
-    @RequestMapping(value = "/insertDisk", method = {RequestMethod.POST})
-    public String InsertTest(MInsertEtcSVProcChk mInsertEtcSVProcChk) throws Exception {
-
+    @RequestMapping(value = "/insertEtcProc", method = {RequestMethod.POST})
+    public String insertEtcSVProcData(MInsertEtcSVProcChk mInsertEtcSVProcChk) throws Exception {
         etcService.InsertEtcSVProcData(mInsertEtcSVProcChk);
         return "OK";
     }
-
-    @RequestMapping(value = "/getFileList", method = {RequestMethod.POST})
-    public String getFileList() throws Exception {
-
-        //etcService.findFileList();
+    @RequestMapping(value="/insertEtcDisk", method = {RequestMethod.POST})
+    public String insertEtcSVDiskData(MInsertEtcSVDiskUsage mInsertEtcSVDiskUsage) throws Exception {
+        etcService.InsertEtcSVDiskData(mInsertEtcSVDiskUsage);
         return "OK";
     }
 }

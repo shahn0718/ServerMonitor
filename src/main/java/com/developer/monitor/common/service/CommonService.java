@@ -14,5 +14,4 @@ public interface CommonService {
         List<File> getFileFromDir(String filePath);
         String readFileFromDir(File fileName) throws Exception;
         List<String> makeListFromDir(File fileName) throws Exception;
-
     }

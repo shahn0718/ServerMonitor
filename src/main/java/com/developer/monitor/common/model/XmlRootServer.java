@@ -13,5 +13,5 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Getter @ToString
 public class XmlRootServer {
     @XmlElement(name="info")
-    private XmlRootGetEntity[] etcXmlServer;
+    private XmlRootGetEntity[] xmlServerData;
 }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public interface erpSVService {
 
     JsonNode toJsonFromErpSVXmlData(String fileName) throws Exception, JAXBException;
-    String InsertErpSVMainData(MInsertErpSVMain mInsertErpSVMain) throws Exception;
-    String InsertErpSVProcData(MInsertErpSVProcChk mInsertErpSVProcChk) throws Exception;
-    String InsertErpSVDiskData(MInsertErpSVDiskUsage mInsertErpSVDiskUsage) throws Exception;
+    void InsertErpSVMainData(MInsertErpSVMain mInsertErpSVMain) throws Exception;
+    void InsertErpSVProcData(MInsertErpSVProcChk mInsertErpSVProcChk) throws Exception;
+    void InsertErpSVDiskData(MInsertErpSVDiskUsage mInsertErpSVDiskUsage) throws Exception;
 }

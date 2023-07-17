@@ -49,27 +49,27 @@ public class etcSVServiceImpl implements etcSVService {
         JsonNode etcXmlServerMainData = oM.readValue(makeJsonData, JsonNode.class);
 
         //JSON [{"hostname":"monitor"
-        JsonNode jsonMainEtcData = etcXmlServerMainData.findValue("etcXmlServer");
+        JsonNode jsonMainEtcData = etcXmlServerMainData.findValue("xmlServerData");
         jsonNode = jsonMainEtcData;
         log.info("jsonMainEtcData = {}",jsonMainEtcData);
 
-//        //JSON ["/,5","/boot,43"]
-//        JsonNode jsonEtcDiskData = jsonMainEtcData.findValue("diskUsage");
-//        log.info("jsonEtcDiskData = {}", jsonEtcDiskData);
-//
-//        // /,5
-//        String s = jsonEtcDiskData.path(0).asText();
-//
-//        JsonNode jsonEtcProcData = jsonMainEtcData.findValue("processChk");
-//        log.info("jsonEtcProcData = {}", jsonEtcProcData);
+        //JSON ["/,5","/boot,43"]
+        JsonNode jsonEtcDiskData = jsonMainEtcData.findValue("diskUsage");
+        log.info("jsonEtcDiskData = {}", jsonEtcDiskData);
 
-//        MInsertEtcSVMain mInsertEtcSVMain = new MInsertEtcSVMain();
-//        MInsertEtcSVProcChk mInsertEtcSVProcChk =new MInsertEtcSVProcChk();
-//        MInsertEtcSVDiskUsage mInsertEtcSVDiskUsage = new MInsertEtcSVDiskUsage();
-//
-//        InsertEtcSVMainData(mInsertEtcSVMain);
-//        InsertEtcSVProcData(mInsertEtcSVProcChk);
-//        InsertEtcSVDiskData(mInsertEtcSVDiskUsage);
+        // /,5
+        String s = jsonEtcDiskData.path(0).asText();
+
+        JsonNode jsonEtcProcData = jsonMainEtcData.findValue("processChk");
+        log.info("jsonEtcProcData = {}", jsonEtcProcData);
+
+        MInsertEtcSVMain mInsertEtcSVMain = new MInsertEtcSVMain();
+        MInsertEtcSVProcChk mInsertEtcSVProcChk =new MInsertEtcSVProcChk();
+        MInsertEtcSVDiskUsage mInsertEtcSVDiskUsage = new MInsertEtcSVDiskUsage();
+
+        InsertEtcSVMainData(mInsertEtcSVMain);
+        InsertEtcSVProcData(mInsertEtcSVProcChk);
+        InsertEtcSVDiskData(mInsertEtcSVDiskUsage);
 
         return jsonMainEtcData;
     }
