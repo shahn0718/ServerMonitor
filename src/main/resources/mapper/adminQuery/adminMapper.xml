@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.developer.monitor.domain.admin.repository.AdminRepository">
+
+    <insert id="saveMember" parameterType="com.developer.monitor.domain.admin.model.MadminMemberMain"
+            useGeneratedKeys="true" keyProperty="etcSVId">
+
+        /* saveMember : */
+
+        INSERT INTO  ADMIN_MONITOR (
+
+            ADMIN_ID
+           ,ADMIN_EMP_NM
+           ,ADMIN_EMP_NO
+           ,ADMIN_EMP_CELL_NO
+           ,ADMIN_EMP_MAIL
+
+        ) VALUES (
+            #{adminId}
+           ,#{adminEmpName}
+           ,#{adminEmpNo}
+           ,#{adminEmpMail}
+           ,#{adminEmpCellNo}
+
+        )
+    </insert>
+
+
+
+
+
+
+
+
+
+
+</mapper>
