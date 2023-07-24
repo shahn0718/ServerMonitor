@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="com.developer.monitor.domain.admin.repository.AdminRepository">
+<mapper namespace="com.developer.monitor.domain.admin.mapper.AdminMapper">
 
     <insert id="saveMember" parameterType="com.developer.monitor.domain.admin.model.MadminMemberMain"
-            useGeneratedKeys="true" keyProperty="etcSVId">
+            useGeneratedKeys="true" keyProperty="adminId">
 
         /* saveMember : */
 
@@ -17,7 +16,7 @@
            ,ADMIN_EMP_MAIL
 
         ) VALUES (
-            #{adminId}
+            (SELECT MAX(ADMIN_ID)+1 FROM ADMIN_MONITOR AS ADMIN_ID)
            ,#{adminEmpName}
            ,#{adminEmpNo}
            ,#{adminEmpMail}

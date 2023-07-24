@@ -1,21 +1,33 @@
 package com.developer.monitor.domain.admin.repository.impl;
 
+import com.developer.monitor.domain.admin.mapper.AdminMapper;
 import com.developer.monitor.domain.admin.model.MadminMemberMain;
 import com.developer.monitor.domain.admin.repository.AdminRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository
+@Slf4j
 public class AdminRepositoryImpl implements AdminRepository {
 
 
+    @Autowired
+    private AdminMapper adminMapper;
     private static Map<Long, MadminMemberMain> memberInfo = new HashMap<>();
-    private static long adminId = 0L;
+    private static long adminId;
+
+
 
     @Override
     public MadminMemberMain saveMember(MadminMemberMain madminMemberMain) {
 
-        madminMemberMain.setAdminId(++adminId);
+        madminMemberMain.setAdminId(adminId);
         memberInfo.put(madminMemberMain.getAdminId(), madminMemberMain);
+        log.info("memberinfo = {}", memberInfo);
+        adminMapper.saveMember(madminMemberMain);
         return madminMemberMain;
     }
 

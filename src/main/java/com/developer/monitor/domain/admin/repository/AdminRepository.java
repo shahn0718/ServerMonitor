@@ -1,9 +1,11 @@
 package com.developer.monitor.domain.admin.repository;
 
 import com.developer.monitor.domain.admin.model.MadminMemberMain;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+
 
 public interface AdminRepository {
     MadminMemberMain saveMember(MadminMemberMain madminMemberMain);
