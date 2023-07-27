@@ -11,5 +11,6 @@ import java.util.Optional;
 public interface AdminMapper {
 
     void saveMember(MadminMemberMain madminMemberMain);
-    MadminMemberMain findMember(String adminEmpMail);
+    MadminMemberMain findMemberByMail(String adminEmpMail);
+    MadminMemberMain findMemberByName(String adminEmpName);
 }

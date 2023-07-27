@@ -23,33 +23,53 @@ public class AdminController{
         this.adminService = adminService;
     }
 
+    /**
+     *
+     * @param madminMemberMain
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/getJoinUser", method = {RequestMethod.POST})
     public String getJoinUser(MadminMemberMain madminMemberMain) throws Exception {
 
         MadminMemberMain joinMember = new MadminMemberMain();
-        joinMember.setAdminEmpNo("C0190005");
-        joinMember.setAdminEmpName("안상형");
-        joinMember.setAdminEmpMail("shahn0718");
-        joinMember.setAdminEmpCellNo("01031984329");
+        joinMember.setAdmin_no("C0190005");
+        joinMember.setAdmin_nm("안상형");
+        joinMember.setAdmin_mail("shahn0718");
+        joinMember.setAdmin_cellno("01031984329");
         log.info("joinMember = {}", joinMember);
         adminService.joinMember(joinMember);
 
-        return "OK";
+        return "getJoinUser";
     }
+    /**
+     *
+     * @param madminMemberMain
+     * @return
+     * @throws Exception
+     */
 
-    @RequestMapping(value="/getFindUser", method = {RequestMethod.POST})
-    public String getFindUser(MadminMemberMain madminMemberMain) throws Exception{
+    @RequestMapping(value="/getFindUserByMail", method = {RequestMethod.POST})
+    public String getFindUserByMail(MadminMemberMain madminMemberMain) throws Exception{
 
-        MadminMemberMain findMember = new MadminMemberMain();
-        findMember.setAdminEmpMail("shahn0718");
+        MadminMemberMain findMemberByMail = new MadminMemberMain();
+        findMemberByMail.setAdmin_mail("shahn0718");
+        adminService.findMemberByMail(findMemberByMail.getAdmin_mail());
+        return "getFindUserByMail";
+    }
+    /**
+     *
+     * @param madminMemberMain
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value="/getFindUserByName", method={RequestMethod.POST})
+    public String getFindUserByName(MadminMemberMain madminMemberMain) throws Exception{
 
-        String findAdminEmpMail= "shahn0718";
-
-//        log.info("findMember = {}", findMember);
-
-        System.out.println("findMember.getAdminEmpMail() = " + findMember.getAdminEmpMail());
-        adminService.findMember(findMember.getAdminEmpMail());
-        return "OK";
+        MadminMemberMain findMemberByName = new MadminMemberMain();
+        findMemberByName.setAdmin_nm("홍길동");
+        adminService.findMemberByName(findMemberByName.getAdmin_nm());
+        return "getFindUserByName";
     }
 
 }

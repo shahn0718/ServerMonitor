@@ -25,13 +25,16 @@ public class AdminService {
 
         log.info("joinMember = {}", madminMemberMain);
         adminRepository.saveMember(madminMemberMain);
-        return madminMemberMain.getAdminId();
+        return madminMemberMain.getAdmin_id();
+    }
+    public Optional<MadminMemberMain> findMemberByMail(String adminEmpMail){
+        System.out.println("adminEmpMail in adminService = " + adminEmpMail);
+        return adminRepository.findByMail(adminEmpMail);
     }
 
-    public Optional<MadminMemberMain> findMember(String adminEmpMail){
-
-        System.out.println("adminEmpMail in Service = " + adminEmpMail);
-        return adminRepository.findByLoginId(adminEmpMail);
+    public Optional<MadminMemberMain> findMemberByName(String adminEmpName){
+        System.out.println("adminEmpName in adminService = " + adminEmpName);
+        return adminRepository.findByName(adminEmpName);
     }
 
     public void deleteMember(String adminEmpMail){

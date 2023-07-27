@@ -22,37 +22,43 @@ public class AdminRepositoryImpl implements AdminRepository {
     @Override
     public MadminMemberMain saveMember(MadminMemberMain madminMemberMain) {
 
-        madminMemberMain.setAdminId(adminId);
-        memberInfo.put(madminMemberMain.getAdminId(), madminMemberMain);
+        madminMemberMain.setAdmin_id(adminId);
+        memberInfo.put(madminMemberMain.getAdmin_id(), madminMemberMain);
         log.info("memberinfo = {}", memberInfo);
         adminMapper.saveMember(madminMemberMain);
         return madminMemberMain;
     }
 
     @Override
-    public Optional<MadminMemberMain> findByLoginId(String adminEmpMail) {
+    public Optional<MadminMemberMain> findByMail(String adminEmpMail) {
 
-
-        System.out.println("memberInfo.get(adminEmpMail) RepositoryImpl = " + adminEmpMail);
-        MadminMemberMain member = adminMapper.findMember(adminEmpMail);
-        String adminEmpNo = member.getAdminEmpNo();
-        System.out.println("adminEmpNo = " + adminEmpNo);
-
+        MadminMemberMain findMemberByMail = adminMapper.findMemberByMail(adminEmpMail);
+        log.info("findMemberByMail = {}", findMemberByMail);
         return Optional.ofNullable(memberInfo.get(adminEmpMail));
     }
 
     @Override
     public Optional<MadminMemberMain> findByName(String adminEmpName) {
+
+        MadminMemberMain findMemberByName = adminMapper.findMemberByName(adminEmpName);
+        log.info("findMemberByName = {}", findMemberByName);
         return memberInfo.values().stream()
-                .filter(memberInfo -> memberInfo.getAdminEmpName().equals(adminEmpName))
+                .filter(memberInfo -> memberInfo.getAdmin_nm().equals(adminEmpName))
                 .findAny();
     }
 
     @Override
     public void updateMember(String adminEmpMail, MadminMemberMain updateMemberMain) {
 
-        Optional<MadminMemberMain> findMember = findByLoginId(adminEmpMail);
+        /**
+         *  update 멤버가 있는 경우, 없는 경우 고려하기
+         *  우선, 있다는 가정하에 작업 후 → 추가 수정 예정
+         */
 
+        Optional<MadminMemberMain> findUpdateMember = findByMail(adminEmpMail);
+        log.info("findUpdateMember = {}", findUpdateMember);
+
+        MadminMemberMain member = findUpdateMember;
 
 //        findMember.setAdminEmpName(updateMemberMain.getAdminEmpName());
 //        findMember.setAdminEmpCellNo(updateMemberMain.getAdminEmpCellNo());

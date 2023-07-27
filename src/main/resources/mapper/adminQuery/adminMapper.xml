@@ -25,26 +25,39 @@
         )
     </insert>
 
-    <select id="findMember" parameterType="string" resultType="com.developer.monitor.domain.admin.model.MadminMemberMain">
+    <select id="findMemberByMail" parameterType="string" resultType="com.developer.monitor.domain.admin.model.MadminMemberMain">
 
-        /* findMember */
+        /* findMemberByMail : Param = {ADMIN_MAIL}*/
 
         SELECT
-          ADMINID
-          ,ADMINEMPNM
-          ,ADMINEMPNO
-          ,ADMINEMPCELLNO
-          ,ADMINEMPMAIL
+            ADMIN_ID
+           ,ADMIN_NM
+           ,ADMIN_NO
+           ,ADMIN_CELLNO
+           ,ADMIN_MAIL
         FROM
-        ADMIN_USER
+            ADMIN_USER
         WHERE
-        1=1
-        AND
-        ADMINEMPMAIL = #{adminEmpMail}
+            ADMIN_MAIL = #{adminEmpMail}
 
     </select>
 
+    <select id="findMemberByName" parameterType="string" resultType="com.developer.monitor.domain.admin.model.MadminMemberMain">
 
+        /* findMemberByName : Param = {ADMIN_NM}*/
+
+        SELECT
+            ADMIN_ID
+            ,ADMIN_NM
+            ,ADMIN_NO
+            ,ADMIN_CELLNO
+            ,ADMIN_MAIL
+        FROM
+            ADMIN_USER
+        WHERE
+            ADMIN_NM = #{adminEmpName}
+
+    </select>
 
 
 
