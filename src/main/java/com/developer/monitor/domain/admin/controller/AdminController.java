@@ -72,4 +72,22 @@ public class AdminController{
         return "getFindUserByName";
     }
 
+    @RequestMapping(value="/doUpdateMember", method={RequestMethod.POST})
+    public String doUpdateMember(String adminEmpMail, MadminMemberMain updateMemberMain) throws Exception {
+
+        MadminMemberMain findMemberByMail = new MadminMemberMain();
+//        findMemberByMail.setAdmin_mail("shahn0718");
+//        adminService.findMemberByMail(findMemberByMail.getAdmin_mail());
+        String empMail = "shahn0718";
+
+        MadminMemberMain updateMemberInfo = new MadminMemberMain();
+        updateMemberInfo.setAdmin_nm("짱구");
+        updateMemberInfo.setAdmin_no("920718");
+        updateMemberInfo.setAdmin_cellno("01044774329");
+        updateMemberInfo.setAdmin_mail("zzang_gu");
+        adminService.updateMember(empMail,updateMemberInfo);
+
+        return "doUpdateMember";
+    }
+
 }

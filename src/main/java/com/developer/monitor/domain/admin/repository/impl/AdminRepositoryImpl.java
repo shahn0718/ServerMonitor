@@ -34,7 +34,7 @@ public class AdminRepositoryImpl implements AdminRepository {
 
         MadminMemberMain findMemberByMail = adminMapper.findMemberByMail(adminEmpMail);
         log.info("findMemberByMail = {}", findMemberByMail);
-        return Optional.ofNullable(memberInfo.get(adminEmpMail));
+        return Optional.ofNullable(findMemberByMail);
     }
 
     @Override
@@ -46,25 +46,21 @@ public class AdminRepositoryImpl implements AdminRepository {
                 .filter(memberInfo -> memberInfo.getAdmin_nm().equals(adminEmpName))
                 .findAny();
     }
-
     @Override
     public void updateMember(String adminEmpMail, MadminMemberMain updateMemberMain) {
-
         /**
          *  update 멤버가 있는 경우, 없는 경우 고려하기
          *  우선, 있다는 가정하에 작업 후 → 추가 수정 예정
          */
+        MadminMemberMain doUpdateMember = findByMail(adminEmpMail).get();
+        System.out.println("doUpdateMember_adminRepositoryImpl = " + doUpdateMember);
+        doUpdateMember.setAdmin_id(doUpdateMember.getAdmin_id());
+        doUpdateMember.setAdmin_nm(updateMemberMain.getAdmin_nm());
+        doUpdateMember.setAdmin_no(updateMemberMain.getAdmin_no());
+        doUpdateMember.setAdmin_cellno(updateMemberMain.getAdmin_cellno());
+        doUpdateMember.setAdmin_mail(updateMemberMain.getAdmin_mail());
 
-        Optional<MadminMemberMain> findUpdateMember = findByMail(adminEmpMail);
-        log.info("findUpdateMember = {}", findUpdateMember);
-
-        MadminMemberMain member = findUpdateMember;
-
-//        findMember.setAdminEmpName(updateMemberMain.getAdminEmpName());
-//        findMember.setAdminEmpCellNo(updateMemberMain.getAdminEmpCellNo());
-//        findMember.setAdminEmpMail(updateMemberMain.getAdminEmpMail());
-//        findMember.setAdminSysCd(updateMemberMain.getAdminSysCd());
-
+        adminMapper.updateMember(doUpdateMember);
     }
 
     @Override

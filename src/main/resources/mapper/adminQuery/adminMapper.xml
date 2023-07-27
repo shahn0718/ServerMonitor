@@ -10,10 +10,10 @@
         INSERT INTO  ADMIN_USER (
 
             ADMIN_ID
-           ,ADMIN_EMP_NM
-           ,ADMIN_EMP_NO
-           ,ADMIN_EMP_CELL_NO
-           ,ADMIN_EMP_MAIL
+           ,ADMIN_NM
+           ,ADMIN_NO
+           ,ADMIN_CELLNO
+           ,ADMIN_MAIL
 
         ) VALUES (
             (SELECT MAX(ADMIN_ID)+1 FROM ADMIN_MONITOR AS ADMIN_ID)
@@ -47,7 +47,7 @@
         /* findMemberByName : Param = {ADMIN_NM}*/
 
         SELECT
-            ADMIN_ID
+             ADMIN_ID
             ,ADMIN_NM
             ,ADMIN_NO
             ,ADMIN_CELLNO
@@ -59,7 +59,20 @@
 
     </select>
 
+    <update id="updateMember" parameterType="com.developer.monitor.domain.admin.model.MadminMemberMain">
 
+        /* updateMember : Param = model.MadminMemberMain */
+
+        UPDATE
+            ADMIN_USER
+        SET
+             ADMIN_NM = #{admin_nm}
+            ,ADMIN_NO = #{admin_no}
+            ,ADMIN_CELLNO = #{admin_cellno}
+            ,ADMIN_MAIL = #{admin_mail}
+        WHERE
+            ADMIN_ID = #{admin_id}
+    </update>
 
 
 

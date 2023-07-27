@@ -1,11 +1,8 @@
 package com.developer.monitor.domain.admin.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Table;
 import lombok.*;
 
-@Getter
-@Setter
+@Getter @Setter
 @ToString
 public class MadminMemberMain {
 

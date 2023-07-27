@@ -31,19 +31,19 @@ public class AdminService {
         System.out.println("adminEmpMail in adminService = " + adminEmpMail);
         return adminRepository.findByMail(adminEmpMail);
     }
-
     public Optional<MadminMemberMain> findMemberByName(String adminEmpName){
         System.out.println("adminEmpName in adminService = " + adminEmpName);
         return adminRepository.findByName(adminEmpName);
     }
-
+    public void updateMember(String adminEmpMail, MadminMemberMain updateMemberMain){
+        System.out.println("adminEmpMail in adminService " + adminEmpMail);
+        log.info("updateMemberMain = {}", updateMemberMain);
+        adminRepository.updateMember(adminEmpMail,updateMemberMain);
+    }
     public void deleteMember(String adminEmpMail){
         adminRepository.deleteMember(adminEmpMail);
     }
 
-    public void updateMember(MadminMemberMain updateMemberMain, String adminEmpMail){
-        adminRepository.updateMember(adminEmpMail,updateMemberMain);
-    }
 
 
 }
