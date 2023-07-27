@@ -29,7 +29,9 @@ public class AdminService {
     }
 
     public Optional<MadminMemberMain> findMember(String adminEmpMail){
-        return Optional.ofNullable(adminRepository.findByLoginId(adminEmpMail));
+
+        System.out.println("adminEmpMail in Service = " + adminEmpMail);
+        return adminRepository.findByLoginId(adminEmpMail);
     }
 
     public void deleteMember(String adminEmpMail){

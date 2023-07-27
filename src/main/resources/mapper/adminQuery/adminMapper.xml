@@ -7,7 +7,7 @@
 
         /* saveMember : */
 
-        INSERT INTO  ADMIN_MONITOR (
+        INSERT INTO  ADMIN_USER (
 
             ADMIN_ID
            ,ADMIN_EMP_NM
@@ -24,6 +24,26 @@
 
         )
     </insert>
+
+    <select id="findMember" parameterType="string" resultType="com.developer.monitor.domain.admin.model.MadminMemberMain">
+
+        /* findMember */
+
+        SELECT
+          ADMINID
+          ,ADMINEMPNM
+          ,ADMINEMPNO
+          ,ADMINEMPCELLNO
+          ,ADMINEMPMAIL
+        FROM
+        ADMIN_USER
+        WHERE
+        1=1
+        AND
+        ADMINEMPMAIL = #{adminEmpMail}
+
+    </select>
+
 
 
 

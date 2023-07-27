@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @Slf4j
 public class AdminController{
@@ -35,7 +37,19 @@ public class AdminController{
         return "OK";
     }
 
+    @RequestMapping(value="/getFindUser", method = {RequestMethod.POST})
+    public String getFindUser(MadminMemberMain madminMemberMain) throws Exception{
 
+        MadminMemberMain findMember = new MadminMemberMain();
+        findMember.setAdminEmpMail("shahn0718");
 
+        String findAdminEmpMail= "shahn0718";
+
+//        log.info("findMember = {}", findMember);
+
+        System.out.println("findMember.getAdminEmpMail() = " + findMember.getAdminEmpMail());
+        adminService.findMember(findMember.getAdminEmpMail());
+        return "OK";
+    }
 
 }

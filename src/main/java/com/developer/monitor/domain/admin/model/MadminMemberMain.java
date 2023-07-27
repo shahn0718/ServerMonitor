@@ -1,11 +1,11 @@
 package com.developer.monitor.domain.admin.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-@Getter @Setter
+@Getter
+@Setter
 @ToString
+
 
 public class MadminMemberMain {
 

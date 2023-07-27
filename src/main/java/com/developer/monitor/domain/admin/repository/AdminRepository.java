@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface AdminRepository {
     MadminMemberMain saveMember(MadminMemberMain madminMemberMain);
-    MadminMemberMain findByLoginId(String adminEmpMail);
+    Optional<MadminMemberMain> findByLoginId(String adminEmpMail);
     Optional<MadminMemberMain> findByName(String adminEmpMail);
     void updateMember(String adminEmpMail, MadminMemberMain updateMemberMain);
     void deleteMember(String adminEmpMail);

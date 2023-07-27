@@ -19,8 +19,6 @@ public class AdminRepositoryImpl implements AdminRepository {
     private static Map<Long, MadminMemberMain> memberInfo = new HashMap<>();
     private static long adminId;
 
-
-
     @Override
     public MadminMemberMain saveMember(MadminMemberMain madminMemberMain) {
 
@@ -32,8 +30,15 @@ public class AdminRepositoryImpl implements AdminRepository {
     }
 
     @Override
-    public MadminMemberMain findByLoginId(String adminEmpMail) {
-        return memberInfo.get(adminEmpMail);
+    public Optional<MadminMemberMain> findByLoginId(String adminEmpMail) {
+
+
+        System.out.println("memberInfo.get(adminEmpMail) RepositoryImpl = " + adminEmpMail);
+        MadminMemberMain member = adminMapper.findMember(adminEmpMail);
+        String adminEmpNo = member.getAdminEmpNo();
+        System.out.println("adminEmpNo = " + adminEmpNo);
+
+        return Optional.ofNullable(memberInfo.get(adminEmpMail));
     }
 
     @Override
@@ -46,19 +51,20 @@ public class AdminRepositoryImpl implements AdminRepository {
     @Override
     public void updateMember(String adminEmpMail, MadminMemberMain updateMemberMain) {
 
-        MadminMemberMain findMember = findByLoginId(adminEmpMail);
+        Optional<MadminMemberMain> findMember = findByLoginId(adminEmpMail);
 
-        findMember.setAdminEmpName(updateMemberMain.getAdminEmpName());
-        findMember.setAdminEmpCellNo(updateMemberMain.getAdminEmpCellNo());
-        findMember.setAdminEmpMail(updateMemberMain.getAdminEmpMail());
-        findMember.setAdminSysCd(updateMemberMain.getAdminSysCd());
+
+//        findMember.setAdminEmpName(updateMemberMain.getAdminEmpName());
+//        findMember.setAdminEmpCellNo(updateMemberMain.getAdminEmpCellNo());
+//        findMember.setAdminEmpMail(updateMemberMain.getAdminEmpMail());
+//        findMember.setAdminSysCd(updateMemberMain.getAdminSysCd());
 
     }
 
     @Override
     public void deleteMember(String adminEmpMail) {
-        MadminMemberMain findMember= findByLoginId(adminEmpMail);
-        memberInfo.remove(findMember.getAdminId());
+//        MadminMemberMain findMember= findByLoginId(adminEmpMail);
+//        memberInfo.remove(findMember.getAdminId());
     }
 
     @Override
