@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.developer.monitor.domain.admin.mapper.AdminMapper">
+<mapper namespace="com.developer.monitor.domain.admin.mapper.MemberMapper">
 
     <insert id="saveMember" parameterType="com.developer.monitor.domain.admin.model.MadminMemberMain"
             useGeneratedKeys="true" keyProperty="adminId">
@@ -75,7 +75,38 @@
     </update>
 
 
+    <delete id="deleteMember" parameterType="com.developer.monitor.domain.admin.model.MadminMemberMain">
 
+        /* delete : Param = model.MadminMemberMain */
+
+        DELETE
+
+        FROM
+            ADMIN_USER
+        WHERE
+            ADMIN_NM = #{admin_nm}
+        AND
+            ADMIN_NO = #{admin_no}
+        AND
+            ADMIN_CELLNO = #{admin_cellno}
+        AND
+            ADMIN_MAIL = #{admin_mail}
+
+    </delete>
+
+    <select id="findAllMember" resultType="com.developer.monitor.domain.admin.model.MadminMemberMain">
+
+        /* findMemberByName : Param = {ADMIN_NM}*/
+
+        SELECT
+            ADMIN_ID
+            ,ADMIN_NM
+            ,ADMIN_NO
+            ,ADMIN_CELLNO
+            ,ADMIN_MAIL
+        FROM
+            ADMIN_USER
+    </select>
 
 
 

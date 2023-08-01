@@ -1,13 +1,12 @@
 package com.developer.monitor.domain.admin.repository;
 
 import com.developer.monitor.domain.admin.model.MadminMemberMain;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 
-public interface AdminRepository {
+public interface MemberRepository {
     MadminMemberMain saveMember(MadminMemberMain madminMemberMain);
     Optional<MadminMemberMain> findByMail(String adminEmpMail);
     Optional<MadminMemberMain> findByName(String adminEmpName);

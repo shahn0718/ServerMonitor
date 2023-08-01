@@ -1,8 +1,7 @@
 package com.developer.monitor.domain.admin.service;
 
 import com.developer.monitor.domain.admin.model.MadminMemberMain;
-import com.developer.monitor.domain.admin.repository.AdminRepository;
-import com.developer.monitor.domain.admin.repository.impl.AdminRepositoryImpl;
+import com.developer.monitor.domain.admin.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,38 +11,40 @@ import java.util.Optional;
 
 @Service
 @Slf4j
-public class AdminService {
+public class MemberService {
 
-    private final AdminRepository adminRepository;
+    private final MemberRepository memberRepository;
 
     @Autowired
-    public AdminService(AdminRepository adminRepository){
-        this.adminRepository = adminRepository;
+    public MemberService(MemberRepository memberRepository){
+        this.memberRepository = memberRepository;
     }
 
     public Long joinMember(MadminMemberMain madminMemberMain){
-
         log.info("joinMember = {}", madminMemberMain);
-        adminRepository.saveMember(madminMemberMain);
+        memberRepository.saveMember(madminMemberMain);
         return madminMemberMain.getAdmin_id();
     }
     public Optional<MadminMemberMain> findMemberByMail(String adminEmpMail){
         System.out.println("adminEmpMail in adminService = " + adminEmpMail);
-        return adminRepository.findByMail(adminEmpMail);
+        return memberRepository.findByMail(adminEmpMail);
     }
     public Optional<MadminMemberMain> findMemberByName(String adminEmpName){
         System.out.println("adminEmpName in adminService = " + adminEmpName);
-        return adminRepository.findByName(adminEmpName);
+        return memberRepository.findByName(adminEmpName);
+    }
+    public List<MadminMemberMain> findAllMembers(){
+        return memberRepository.findAll();
     }
     public void updateMember(String adminEmpMail, MadminMemberMain updateMemberMain){
         System.out.println("adminEmpMail in adminService " + adminEmpMail);
         log.info("updateMemberMain = {}", updateMemberMain);
-        adminRepository.updateMember(adminEmpMail,updateMemberMain);
+        memberRepository.updateMember(adminEmpMail,updateMemberMain);
     }
-    public void deleteMember(String adminEmpMail){
-        adminRepository.deleteMember(adminEmpMail);
+    public void deleteMember(String adminEmpMail) {
+        System.out.println("adminEmpMail in adminService " + adminEmpMail);
+        //log.info 관련 데이터는 adminRepositoryImpl
+        memberRepository.deleteMember(adminEmpMail);
     }
-
-
 
 }

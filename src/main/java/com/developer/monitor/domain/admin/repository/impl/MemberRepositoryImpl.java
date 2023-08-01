@@ -1,8 +1,8 @@
 package com.developer.monitor.domain.admin.repository.impl;
 
-import com.developer.monitor.domain.admin.mapper.AdminMapper;
+import com.developer.monitor.domain.admin.mapper.MemberMapper;
 import com.developer.monitor.domain.admin.model.MadminMemberMain;
-import com.developer.monitor.domain.admin.repository.AdminRepository;
+import com.developer.monitor.domain.admin.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,11 +11,11 @@ import java.util.*;
 
 @Repository
 @Slf4j
-public class AdminRepositoryImpl implements AdminRepository {
+public class MemberRepositoryImpl implements MemberRepository {
 
 
     @Autowired
-    private AdminMapper adminMapper;
+    private MemberMapper memberMapper;
     private static Map<Long, MadminMemberMain> memberInfo = new HashMap<>();
     private static long adminId;
 
@@ -25,14 +25,14 @@ public class AdminRepositoryImpl implements AdminRepository {
         madminMemberMain.setAdmin_id(adminId);
         memberInfo.put(madminMemberMain.getAdmin_id(), madminMemberMain);
         log.info("memberinfo = {}", memberInfo);
-        adminMapper.saveMember(madminMemberMain);
+        memberMapper.saveMember(madminMemberMain);
         return madminMemberMain;
     }
 
     @Override
     public Optional<MadminMemberMain> findByMail(String adminEmpMail) {
 
-        MadminMemberMain findMemberByMail = adminMapper.findMemberByMail(adminEmpMail);
+        MadminMemberMain findMemberByMail = memberMapper.findMemberByMail(adminEmpMail);
         log.info("findMemberByMail = {}", findMemberByMail);
         return Optional.ofNullable(findMemberByMail);
     }
@@ -40,11 +40,18 @@ public class AdminRepositoryImpl implements AdminRepository {
     @Override
     public Optional<MadminMemberMain> findByName(String adminEmpName) {
 
-        MadminMemberMain findMemberByName = adminMapper.findMemberByName(adminEmpName);
+        MadminMemberMain findMemberByName = memberMapper.findMemberByName(adminEmpName);
         log.info("findMemberByName = {}", findMemberByName);
         return memberInfo.values().stream()
                 .filter(memberInfo -> memberInfo.getAdmin_nm().equals(adminEmpName))
                 .findAny();
+    }
+
+    @Override
+    public List<MadminMemberMain> findAll() {
+        List<MadminMemberMain> findAllMembers = memberMapper.findAllMember();
+        log.info("findAllMembers={}",findAllMembers);
+        return findAllMembers;
     }
     @Override
     public void updateMember(String adminEmpMail, MadminMemberMain updateMemberMain) {
@@ -60,17 +67,15 @@ public class AdminRepositoryImpl implements AdminRepository {
         doUpdateMember.setAdmin_cellno(updateMemberMain.getAdmin_cellno());
         doUpdateMember.setAdmin_mail(updateMemberMain.getAdmin_mail());
 
-        adminMapper.updateMember(doUpdateMember);
+        memberMapper.updateMember(doUpdateMember);
     }
 
     @Override
     public void deleteMember(String adminEmpMail) {
-//        MadminMemberMain findMember= findByLoginId(adminEmpMail);
-//        memberInfo.remove(findMember.getAdminId());
+        MadminMemberMain doDeleteMember = findByMail(adminEmpMail).get();
+        log.info("deleteMeberMain={}", doDeleteMember);
+        memberMapper.deleteMember(doDeleteMember);
     }
 
-    @Override
-    public List<MadminMemberMain> findAll() {
-        return new ArrayList<>(memberInfo.values());
-    }
+
 }
