@@ -18,17 +18,14 @@ public class MemberRepositoryImpl implements MemberRepository {
     private MemberMapper memberMapper;
     private static Map<Long, MadminMemberMain> memberInfo = new HashMap<>();
     private static long adminId;
-
     @Override
     public MadminMemberMain saveMember(MadminMemberMain madminMemberMain) {
-
         madminMemberMain.setAdmin_id(adminId);
         memberInfo.put(madminMemberMain.getAdmin_id(), madminMemberMain);
         log.info("memberinfo = {}", memberInfo);
         memberMapper.saveMember(madminMemberMain);
         return madminMemberMain;
     }
-
     @Override
     public Optional<MadminMemberMain> findByMail(String adminEmpMail) {
 
@@ -36,7 +33,6 @@ public class MemberRepositoryImpl implements MemberRepository {
         log.info("findMemberByMail = {}", findMemberByMail);
         return Optional.ofNullable(findMemberByMail);
     }
-
     @Override
     public Optional<MadminMemberMain> findByName(String adminEmpName) {
 
@@ -46,7 +42,6 @@ public class MemberRepositoryImpl implements MemberRepository {
                 .filter(memberInfo -> memberInfo.getAdmin_nm().equals(adminEmpName))
                 .findAny();
     }
-
     @Override
     public List<MadminMemberMain> findAll() {
         List<MadminMemberMain> findAllMembers = memberMapper.findAllMember();
@@ -69,13 +64,10 @@ public class MemberRepositoryImpl implements MemberRepository {
 
         memberMapper.updateMember(doUpdateMember);
     }
-
     @Override
     public void deleteMember(String adminEmpMail) {
         MadminMemberMain doDeleteMember = findByMail(adminEmpMail).get();
         log.info("deleteMeberMain={}", doDeleteMember);
         memberMapper.deleteMember(doDeleteMember);
     }
-
-
 }

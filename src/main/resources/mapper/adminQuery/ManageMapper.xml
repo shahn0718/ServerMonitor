@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.developer.monitor.domain.admin.mapper.ManageMapper">
+
+    <insert id="createManageList" parameterType="com.developer.monitor.domain.admin.model.MmanageMain"
+            useGeneratedKeys="true" keyProperty="manageId">
+
+        /* saveMember : */
+
+        INSERT INTO  ADMIN_MANAGE (
+
+         MANAGE_ID
+        ,MANAGE_CD
+        ,MANAGE_IP
+        ,ADMIN_NO
+
+        ) VALUES (
+
+         #{manage_id}
+        ,#{manage_cd}
+        ,#{manage_ip}
+        ,#{admin_no}
+
+
+        )
+    </insert>
+
+
+
+
+
+
+
+
+
+
+</mapper>

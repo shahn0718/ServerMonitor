@@ -16,7 +16,7 @@
            ,ADMIN_MAIL
 
         ) VALUES (
-            (SELECT MAX(ADMIN_ID)+1 FROM ADMIN_MONITOR AS ADMIN_ID)
+            (SELECT MAX(ADMIN_ID)+1 FROM ADMIN_USER AS ADMIN_ID)
            ,#{adminEmpName}
            ,#{adminEmpNo}
            ,#{adminEmpMail}

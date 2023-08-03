@@ -4,8 +4,6 @@ import com.developer.monitor.domain.admin.model.MadminMemberMain;
 
 import java.util.List;
 import java.util.Optional;
-
-
 public interface MemberRepository {
     MadminMemberMain saveMember(MadminMemberMain madminMemberMain);
     Optional<MadminMemberMain> findByMail(String adminEmpMail);

@@ -12,13 +12,11 @@ import java.util.Optional;
 @Service
 @Slf4j
 public class ManageService {
-
     private final ManageRepository manageRepository;
     @Autowired
     public ManageService(ManageRepository manageRepository){
         this.manageRepository = manageRepository;
     }
-
     public Long createManageList(MmanageMain mmanageMain){
         log.info("createManageList={}", mmanageMain);
         manageRepository.createManageList(mmanageMain);
@@ -46,6 +44,4 @@ public class ManageService {
         System.out.println("manageSVCd in manageService = " + manageSVCd);
         manageRepository.deleteManageList(adminEmpNo, manageSVCd);
     }
-
-
 }
