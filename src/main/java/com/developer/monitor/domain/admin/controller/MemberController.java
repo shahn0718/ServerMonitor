@@ -20,6 +20,7 @@ public class MemberController {
     }
 
     /**
+     * getJoinUser
      *
      * @param madminMemberMain
      * @return
@@ -39,6 +40,7 @@ public class MemberController {
         return "getJoinUser";
     }
     /**
+     * getFindUserByMail
      *
      * @param madminMemberMain
      * @return

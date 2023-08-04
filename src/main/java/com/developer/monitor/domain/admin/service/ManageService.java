@@ -30,9 +30,15 @@ public class ManageService {
         System.out.println("adminEmpNo in manageService = " + adminEmpNo);
         return manageRepository.findManageListByEmpNo(adminEmpNo);
     }
+    public Optional<MmanageMain> findManageListByInfo(String adminEmpNo, String manageSVCd){
+        System.out.println("adminEmpNo in manageService= " + adminEmpNo);
+        System.out.println("manageSVCd in manageService= " + manageSVCd);
+        return manageRepository.findManageListByInfo(adminEmpNo,manageSVCd);
+    }
     public List<MmanageMain> findManagerList(){
         return manageRepository.findAllManageList();
     }
+
     public void updateManageList(String adminEmpNo, String manageSVCd, MmanageMain updateManageMain){
         System.out.println("adminEmpNo in manageService = " + adminEmpNo);
         System.out.println("manageSVCd in manageService = " + manageSVCd);
