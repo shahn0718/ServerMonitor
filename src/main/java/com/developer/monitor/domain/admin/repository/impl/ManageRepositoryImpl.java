@@ -73,11 +73,13 @@ public class ManageRepositoryImpl implements ManageRepository {
     @Override
     public void updateManageList(String adminEmpNo, String manageSVCd, MmanageMain updateManageMain) {
 
-        MmanageMain doUpdateManageList = findManageListByInfo(adminEmpNo,manageSVCd).get();
+        MmanageMain doUpdateManageList = findManageListByInfo(adminEmpNo, manageSVCd).get();
 
-        log.info("doUpdateManageList={}", doUpdateManageList);
-        //doUpdateManageList → 변경 전 내용
+        System.out.println("doUpdateManageList = " + doUpdateManageList);
+        log.info("adminEmpNo={}", adminEmpNo);
+        log.info("manageSVCd={}", manageSVCd);
 
+        doUpdateManageList.setManage_id(doUpdateManageList.getManage_id());
         doUpdateManageList.setManage_ip(updateManageMain.getManage_ip());
         doUpdateManageList.setManage_cd(updateManageMain.getManage_cd());
         doUpdateManageList.setAdmin_no(updateManageMain.getAdmin_no());

@@ -25,6 +25,44 @@
         )
     </insert>
 
+    <select id="findManageListByInfo" parameterType="string" resultType="com.developer.monitor.domain.admin.model.MmanageMain">
+
+        /* findMemberByName : Param = {ADMIN_NM}*/
+
+        SELECT
+
+             MANAGE_ID
+            ,MANAGE_CD
+            ,MANAGE_IP
+            ,ADMIN_NO
+
+        FROM
+            ADMIN_MANAGE
+        WHERE
+            ADMIN_NO = #{admin_no}
+        AND
+            MANAGE_CD= #{manage_cd}
+
+    </select>
+
+    <update id="updateManageList" parameterType="com.developer.monitor.domain.admin.model.MmanageMain">
+
+        /* updateManageList : Param = model.MmanageMain */
+
+        UPDATE
+            ADMIN_MANAGE
+        SET
+            MANAGE_IP = #{manage_ip}
+           ,MANAGE_CD = #{manage_cd}
+           ,ADMIN_NO  = #{admin_no}
+        WHERE
+            MANAGE_ID = #{manage_id}
+
+    </update>
+
+
+
+
 
 
 

@@ -101,11 +101,13 @@ public class ManageController {
         findManageListByInfo.setAdmin_no("C0190005");
         findManageListByInfo.setManage_cd("ERP");
 
+
         MmanageMain updateManageListInfo = new MmanageMain();
         updateManageListInfo.setAdmin_no("C0230005");
         updateManageListInfo.setManage_ip("10.210.1.151");
         updateManageListInfo.setManage_cd("GW");
-        manageService.updateManageList(updateManageListInfo.getAdmin_no(),updateManageListInfo.getManage_cd(),updateManageListInfo);
+        System.out.println("updateManageListInfo = " + updateManageListInfo);
+        manageService.updateManageList(findManageListByInfo.getAdmin_no(),findManageListByInfo.getManage_cd(),updateManageListInfo);
 
         return "doUpdateManageList";
 
