@@ -4,27 +4,69 @@
 
     <insert id="createManageList" parameterType="com.developer.monitor.domain.admin.model.MmanageMain"
             useGeneratedKeys="true" keyProperty="manageId">
-
-        /* saveMember : */
+        /* createManageList : */
 
         INSERT INTO  ADMIN_MANAGE (
 
-         MANAGE_ID
-        ,MANAGE_CD
-        ,MANAGE_IP
-        ,ADMIN_NO
-
+             MANAGE_ID
+            ,MANAGE_CD
+            ,MANAGE_IP
+            ,ADMIN_NO
         ) VALUES (
 
-         #{manage_id}
-        ,#{manage_cd}
-        ,#{manage_ip}
-        ,#{admin_no}
-
-
+             (SELECT MAX(MANAGE_ID)+1 FROM ADMIN_MANAGE AS MANAGE_ID)
+            ,#{manage_cd}
+            ,#{manage_ip}
+            ,#{admin_no}
         )
     </insert>
 
+    <select id="findManageListBySV" parameterType="string" resultType="com.developer.monitor.domain.admin.model.MmanageMain">
+        /* findManageListBySV
+            : Param = {MANAGE_CD} */
+        SELECT
+
+            MANAGE_ID
+           ,MANAGE_CD
+           ,MANAGE_IP
+           ,ADMIN_NO
+        FROM
+            ADMIN_MANAGE
+        WHERE
+            MANAGE_CD = #{manage_cd}
+    </select>
+
+    <select id="findManageListByEmpNo" parameterType="string" resultType="com.developer.monitor.domain.admin.model.MmanageMain">
+        /* findManageListByEmpNo
+            : Param = {ADMIN_NO} */
+        SELECT
+
+            MANAGE_ID
+           ,MANAGE_CD
+           ,MANAGE_IP
+           ,ADMIN_NO
+        FROM
+            ADMIN_MANAGE
+        WHERE
+            ADMIN_NO = #{admin_no}
+    </select>
+
+    <select id="findManageListByIp" parameterType="string" resultType="com.developer.monitor.domain.admin.model.MmanageMain">
+        /* findManageListByIp
+            : Param = {ADMIN_NM} , {MANAGE_IP} */
+        SELECT
+
+             MANAGE_ID
+            ,MANAGE_CD
+            ,MANAGE_IP
+            ,ADMIN_NO
+        FROM
+            ADMIN_MANAGE
+        WHERE
+            ADMIN_NO = #{admin_no}
+        AND
+            MANAGE_IP = #{manage_ip}
+    </select>
     <select id="findManageListByInfo" parameterType="string" resultType="com.developer.monitor.domain.admin.model.MmanageMain">
 
         /* findMemberByName : Param = {ADMIN_NM}*/
@@ -35,7 +77,6 @@
             ,MANAGE_CD
             ,MANAGE_IP
             ,ADMIN_NO
-
         FROM
             ADMIN_MANAGE
         WHERE
@@ -44,10 +85,10 @@
             MANAGE_CD= #{manage_cd}
 
     </select>
-
     <update id="updateManageList" parameterType="com.developer.monitor.domain.admin.model.MmanageMain">
 
-        /* updateManageList : Param = model.MmanageMain */
+        /* updateManageList
+            : Param = model.MmanageMain */
 
         UPDATE
             ADMIN_MANAGE
@@ -57,19 +98,21 @@
            ,ADMIN_NO  = #{admin_no}
         WHERE
             MANAGE_ID = #{manage_id}
-
     </update>
 
+    <delete id="deleteManageList" parameterType="com.developer.monitor.domain.admin.model.MmanageMain">
 
+        /* deleteManageList
+            : Param = model.MmanageMain */
 
-
-
-
-
-
-
-
-
-
-
+        DELETE
+        FROM
+            ADMIN_MANAGE
+        WHERE
+            MANAGE_CD = #{manage_cd}
+        AND
+            MANAGE_IP = #{manage_ip}
+        AND
+            ADMIN_NO = #{admin_no}
+    </delete>
 </mapper>

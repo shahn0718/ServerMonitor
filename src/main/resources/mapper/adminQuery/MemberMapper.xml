@@ -4,7 +4,6 @@
 
     <insert id="saveMember" parameterType="com.developer.monitor.domain.admin.model.MadminMemberMain"
             useGeneratedKeys="true" keyProperty="adminId">
-
         /* saveMember : */
 
         INSERT INTO  ADMIN_USER (
@@ -26,8 +25,8 @@
     </insert>
 
     <select id="findMemberByMail" parameterType="string" resultType="com.developer.monitor.domain.admin.model.MadminMemberMain">
-
-        /* findMemberByMail : Param = {ADMIN_MAIL}*/
+        /* findMemberByMail
+            : Param = {ADMIN_MAIL} */
 
         SELECT
             ADMIN_ID
@@ -39,12 +38,11 @@
             ADMIN_USER
         WHERE
             ADMIN_MAIL = #{adminEmpMail}
-
     </select>
 
     <select id="findMemberByName" parameterType="string" resultType="com.developer.monitor.domain.admin.model.MadminMemberMain">
-
-        /* findMemberByName : Param = {ADMIN_NM}*/
+        /* findMemberByName
+            : Param = {ADMIN_NM} */
 
         SELECT
              ADMIN_ID
@@ -56,12 +54,11 @@
             ADMIN_USER
         WHERE
             ADMIN_NM = #{adminEmpName}
-
     </select>
 
     <update id="updateMember" parameterType="com.developer.monitor.domain.admin.model.MadminMemberMain">
-
-        /* updateMember : Param = model.MadminMemberMain */
+        /* updateMember
+            : Param = {ADMIN_ID} */
 
         UPDATE
             ADMIN_USER
@@ -74,10 +71,9 @@
             ADMIN_ID = #{admin_id}
     </update>
 
-
     <delete id="deleteMember" parameterType="com.developer.monitor.domain.admin.model.MadminMemberMain">
-
-        /* delete : Param = model.MadminMemberMain */
+        /* deleteMember
+            : Param = model.MadminMemberMain */
 
         DELETE
 
@@ -91,12 +87,10 @@
             ADMIN_CELLNO = #{admin_cellno}
         AND
             ADMIN_MAIL = #{admin_mail}
-
     </delete>
 
     <select id="findAllMember" resultType="com.developer.monitor.domain.admin.model.MadminMemberMain">
-
-        /* findMemberByName : Param = {ADMIN_NM}*/
+        /* findAllMember */
 
         SELECT
             ADMIN_ID
@@ -107,8 +101,4 @@
         FROM
             ADMIN_USER
     </select>
-
-
-
-
 </mapper>

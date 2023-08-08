@@ -94,6 +94,29 @@ public class ManageController {
         return "getManageListByInfo";
     }
 
+    /**
+     * doFindAllManageList
+     * 전체 담당자 리스트 가져오기
+     *
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value="/getAllManageList", method={RequestMethod.POST})
+    public String doFindAllManageList() throws Exception{
+        manageService.findManagerList();
+        return "getAllManageList";
+    }
+
+    /**
+     * doUpdateManageList
+     * 담당자 리스트 업데이트
+     * 
+     * @param adminEmpNo
+     * @param manageSVCd
+     * @param updateManageMain
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value="/doUpdateManageList", method={RequestMethod.POST})
     public String doUpdateManageList(String adminEmpNo, String manageSVCd, MmanageMain updateManageMain) throws Exception{
 
@@ -113,10 +136,24 @@ public class ManageController {
 
     }
 
+    /**
+     * doDeleteManageList
+     * 담당자 리스트 삭제하기
+     * 
+     * @param adminEmpNo
+     * @param manageSVIp
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value="/doDeleteManageList", method={RequestMethod.POST})
+    public String doDeleteManageList(String adminEmpNo, String manageSVIp) throws Exception{
 
+        MmanageMain findManagerListByIp = new MmanageMain();
+        findManagerListByIp.setAdmin_no("C0230005");
+        findManagerListByIp.setManage_ip("10.210.1.151");
+        manageService.deleteManageList(findManagerListByIp.getAdmin_no(),findManagerListByIp.getManage_ip());
 
+        return "doDeleteManageList";
 
-
-
-
+    }
 }

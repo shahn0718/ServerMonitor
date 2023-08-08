@@ -12,6 +12,7 @@ public interface ManageMapper {
     void createManageList(MmanageMain mmanageMain);
     MmanageMain findManageListBySV(String manageSVCd);
     MmanageMain findManageListByEmpNo(String adminEmpNo);
+    MmanageMain findManageListByIp(@Param("admin_no")String adminEmpNo, @Param("manage_ip")String manageSVIp);
     MmanageMain findManageListByInfo(@Param("admin_no")String adminEmpNo, @Param("manage_cd")String manageSVCd);
     void updateManageList(MmanageMain updateManageMain);
     void deleteManageList(MmanageMain deleteManageMain);

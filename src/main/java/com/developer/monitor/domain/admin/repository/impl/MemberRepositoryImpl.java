@@ -64,6 +64,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 
         memberMapper.updateMember(doUpdateMember);
     }
+
     @Override
     public void deleteMember(String adminEmpMail) {
         MadminMemberMain doDeleteMember = findByMail(adminEmpMail).get();

@@ -45,9 +45,9 @@ public class ManageService {
         log.info("updateManageMain={}",updateManageMain);
         manageRepository.updateManageList(adminEmpNo,manageSVCd,updateManageMain);
     }
-    public void deleteManageList(String adminEmpNo, String manageSVCd){
+    public void deleteManageList(String adminEmpNo, String manageSVIp){
         System.out.println("adminEmpNo in manageService = " + adminEmpNo);
-        System.out.println("manageSVCd in manageService = " + manageSVCd);
-        manageRepository.deleteManageList(adminEmpNo, manageSVCd);
+        System.out.println("manageSVCd in manageService = " + manageSVIp);
+        manageRepository.deleteManageList(adminEmpNo, manageSVIp);
     }
 }

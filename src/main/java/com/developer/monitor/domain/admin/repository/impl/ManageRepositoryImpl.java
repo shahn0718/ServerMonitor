@@ -48,6 +48,13 @@ public class ManageRepositoryImpl implements ManageRepository {
                 .filter(manageInfo -> manageInfo.getManage_id().equals(adminEmpNo))
                 .findAny();
     }
+    @Override
+    public Optional<MmanageMain> findManageListByIp(String adminEmpNo, String manageSVIp) {
+
+        MmanageMain findManageListByIp = manageMapper.findManageListByIp(adminEmpNo, manageSVIp);
+        log.info("findManageListByIp={}", findManageListByIp);
+        return Optional.ofNullable(findManageListByIp);
+    }
 
     @Override
     public Optional<MmanageMain> findManageListByInfo(String adminEmpNo, String manageSVCd) {
@@ -89,8 +96,8 @@ public class ManageRepositoryImpl implements ManageRepository {
     }
 
     @Override
-    public void deleteManageList(String adminEmpNo, String manageSVCd) {
-        MmanageMain doDeleteManageList = findManageListByInfo(adminEmpNo, manageSVCd).get();
+    public void deleteManageList(String adminEmpNo, String manageSVIp) {
+        MmanageMain doDeleteManageList = findManageListByIp(adminEmpNo, manageSVIp).get();
         log.info("doDeleteManageList={}" , doDeleteManageList);
         manageMapper.deleteManageList(doDeleteManageList);
     }
