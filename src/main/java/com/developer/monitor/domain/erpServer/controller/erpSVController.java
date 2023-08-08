@@ -32,9 +32,10 @@ public class erpSVController {
     public void getErpSVXmlList() throws Exception {
         ServerFilePath filePath = new ServerFilePath();
         List<File> fileListFromDir = cmnService.getFileFromDir(filePath.erpSVFilePath);
+          log.info("fileListFromDir = {}" + fileListFromDir);
         for(File fileName : fileListFromDir){
             log.info("erpSVFileName = {}", fileName);
-           // erpService.toJsonFromErpSVXmlData(String.valueOf(fileName));
+            erpService.toJsonFromErpSVXmlData(String.valueOf(fileName));
         }
     }
     @RequestMapping(value="/insertErpMain", method={RequestMethod.POST})

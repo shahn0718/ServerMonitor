@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+    <info>
+        <hostname>donga-devwas</hostname>
+        <date>2023-05-23</date>
+        <time>14:40:01</time>
+        <osver>CentOS Stream release 8</osver>
+        <ipaddr>10.75.1.64</ipaddr>
+        <cpu_usage>13</cpu_usage>
+        <mem_usage>37</mem_usage>
+        <swap_usage>24</swap_usage>
+        <load_num>0</load_num>
+        <disk_usage>/,14</disk_usage>
+        <disk_usage>/home,90</disk_usage>
+        <disk_usage>/boot,79</disk_usage>
+        <disk_usage>/boot/efi,2</disk_usage>
+        <proc_chk>java,11</proc_chk>
+    </info>
+</server>

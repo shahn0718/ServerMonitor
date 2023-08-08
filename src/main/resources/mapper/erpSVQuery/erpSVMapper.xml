@@ -18,7 +18,7 @@
                ,ERP_SV_DATETIME
 
             ) VALUES (
-                #{erpSVId}
+                (SELECT MAX(ERP_SV_ID)+1 FROM ERP_SV_MAIN AS ERP_SV_ID)
                ,#{erpSVCd}
                ,#{erpSVOs}
                ,#{erpSVIp}
@@ -53,7 +53,7 @@
 
 
 
-    <insert id="insertErpSVDiskData" parameterType="com.developer.monitor.domain.erpServer.model.MInsertErpSVDiskUsage"
+    <insert id="insertEprSVDiskData" parameterType="com.developer.monitor.domain.erpServer.model.MInsertErpSVDiskUsage"
             useGeneratedKeys="true" keyProperty="erpSVId">
 
         /* insertErpSVDiskDate : */

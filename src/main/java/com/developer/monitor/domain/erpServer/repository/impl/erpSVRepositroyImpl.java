@@ -1,21 +1,20 @@
-package com.developer.monitor.domain.erpServer.service.impl;
-
+package com.developer.monitor.domain.erpServer.repository.impl;
 
 import com.developer.monitor.common.model.XmlRootServer;
 import com.developer.monitor.domain.erpServer.mapper.erpSVMapper;
 import com.developer.monitor.domain.erpServer.model.MInsertErpSVDiskUsage;
 import com.developer.monitor.domain.erpServer.model.MInsertErpSVMain;
 import com.developer.monitor.domain.erpServer.model.MInsertErpSVProcChk;
-import com.developer.monitor.domain.erpServer.service.erpSVService;
+import com.developer.monitor.domain.erpServer.repository.erpSVRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Unmarshaller;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
+import javax.xml.bind.JAXBException;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,18 +22,16 @@ import java.util.List;
 import java.util.Set;
 
 @Slf4j
-@Service
-public class erpSVServiceImpl implements erpSVService{
+@Repository
+public class erpSVRepositroyImpl implements erpSVRepository {
 
     @Autowired
     private erpSVMapper erpMapper;
     private int erpSVPkId;
     private JsonNode jsonNode;
     private ObjectMapper oM = new ObjectMapper();
-
     @Override
     public JsonNode toJsonFromErpSVXmlData(String fileName) throws Exception, JAXBException {
-
         FileInputStream fileInputStream = new FileInputStream(fileName);
         jsonNode = null;
 
@@ -51,7 +48,7 @@ public class erpSVServiceImpl implements erpSVService{
         //JSON [{"hostname":"monitor"
         JsonNode jsonMainErpData = erpXmlServerMainData.findValue("xmlServerData");
         jsonNode = jsonMainErpData;
-        log.info("jsonMainErpData",jsonMainErpData);
+        log.info("jsonMainErpData = {}",jsonMainErpData);
 
         MInsertErpSVMain mInsertErpSVMain = new MInsertErpSVMain();
         MInsertErpSVProcChk mInsertErpSVProcChk = new MInsertErpSVProcChk();
@@ -63,6 +60,7 @@ public class erpSVServiceImpl implements erpSVService{
 
         return jsonMainErpData;
     }
+
     @Override
     public void InsertErpSVMainData(MInsertErpSVMain mInsertErpSVMain) throws Exception {
 
@@ -79,9 +77,9 @@ public class erpSVServiceImpl implements erpSVService{
         erpMapper.insertErpSVMainData(mInsertErpSVMain);
         erpSVPkId = mInsertErpSVMain.getErpSVId();
     }
-
     @Override
     public void InsertErpSVProcData(MInsertErpSVProcChk mInsertErpSVProcChk) throws Exception {
+
 
         JsonNode erpSVInsertProcData = jsonNode;
         JsonNode processChk = erpSVInsertProcData.findValue("processChk");
@@ -107,10 +105,41 @@ public class erpSVServiceImpl implements erpSVService{
             insertDbProcList.add(mInsertErpSVProcChkData);
         }
 
+        //Insert하기
+        for(MInsertErpSVProcChk mInsertErpSVProcChkData : insertDbProcList){
+            erpMapper.insertErpSVProcData(mInsertErpSVProcChkData);
+        }
     }
-
     @Override
     public void InsertErpSVDiskData(MInsertErpSVDiskUsage mInsertErpSVDiskUsage) throws Exception {
 
+        JsonNode erpSVInsertDiskData = jsonNode;
+
+        JsonNode diskUsage = erpSVInsertDiskData.findValue("diskUsage");
+
+        List<String> diskJsonToList = new ArrayList<>();
+        for(JsonNode jsonNode: diskUsage){
+            diskJsonToList.add(jsonNode.asText());
+        }
+        HashMap<String,String> diskMap = new HashMap<>();
+        for(String data: diskJsonToList){
+            String[] array = data.split(",");
+            diskMap.put(array[0],array[1]);
+        }
+
+        List<MInsertErpSVDiskUsage> insertDbDiskList = new ArrayList<>();
+        Set<String> keySet = diskMap.keySet();
+        for(String key: keySet){
+            MInsertErpSVDiskUsage mInsertErpSVDiskUsageData = new MInsertErpSVDiskUsage();
+            mInsertErpSVDiskUsageData.setErpSVId(erpSVPkId);
+            mInsertErpSVDiskUsageData.setErpSVDiskCd(key);
+            mInsertErpSVDiskUsageData.setErpSVDiskUsage(diskMap.get(key));
+            insertDbDiskList.add(mInsertErpSVDiskUsageData);
+        }
+
+        //Insert
+        for(MInsertErpSVDiskUsage mInsertErpSVDiskUsageData: insertDbDiskList){
+            erpMapper.insertEprSVDiskData(mInsertErpSVDiskUsageData);
+        }
     }
 }

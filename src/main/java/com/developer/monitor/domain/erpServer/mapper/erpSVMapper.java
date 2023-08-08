@@ -12,6 +12,4 @@ public interface erpSVMapper {
     void insertErpSVProcData(MInsertErpSVProcChk mInsertErpSVProcChk);
     void insertEprSVDiskData(MInsertErpSVDiskUsage mInsertErpSVDiskUsage);
 
-
-
 }
