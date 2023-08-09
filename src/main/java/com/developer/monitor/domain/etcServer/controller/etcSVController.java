@@ -2,6 +2,7 @@ package com.developer.monitor.domain.etcServer.controller;
 
 import com.developer.monitor.common.model.ServerFilePath;
 import com.developer.monitor.common.service.CommonService;
+import com.developer.monitor.common.service.FileService;
 import com.developer.monitor.domain.etcServer.model.MInsertEtcSVDiskUsage;
 import com.developer.monitor.domain.etcServer.model.MInsertEtcSVMain;
 import com.developer.monitor.domain.etcServer.model.MInsertEtcSVProcChk;
@@ -27,7 +28,7 @@ public class etcSVController {
     @Autowired
     private etcSVService etcService;
     @Autowired
-    private CommonService cmnService;
+    private FileService fileService;
 
     @PostMapping(value = "/getEtcSVXmlList")
     //@Scheduled(cron = "0 */5 * * * *")
@@ -37,7 +38,7 @@ public class etcSVController {
          *  toJsonFromEtcSVXmlData 여기에 insertMain / insertDisk / insertProc 포함.
          */
         ServerFilePath filePath = new ServerFilePath();
-        List<File> fileListFromDir = cmnService.getFileFromDir(filePath.etcSVFilePath);
+        List<File> fileListFromDir = fileService.getFileFromDir(filePath.etcSVFilePath);
         for (File fileName : fileListFromDir) {
             log.info("etcSVFileName = {}", fileName);
             etcService.toJsonFromEtcSVXmlData(String.valueOf(fileName));

@@ -3,6 +3,7 @@ package com.developer.monitor.domain.erpServer.controller;
 
 import com.developer.monitor.common.model.ServerFilePath;
 import com.developer.monitor.common.service.CommonService;
+import com.developer.monitor.common.service.FileService;
 import com.developer.monitor.domain.erpServer.model.MInsertErpSVDiskUsage;
 import com.developer.monitor.domain.erpServer.model.MInsertErpSVMain;
 import com.developer.monitor.domain.erpServer.model.MInsertErpSVProcChk;
@@ -24,12 +25,12 @@ public class erpSVController {
     @Autowired
     private erpSVService erpService;
     @Autowired
-    private CommonService cmnService;
+    private FileService fileService;
     @PostMapping(value= "/getErpSVXmlList")
     //@Scheduled(cron = "0 */5 * * * *")
     public void getErpSVXmlList() throws Exception {
         ServerFilePath filePath = new ServerFilePath();
-        List<File> fileListFromDir = cmnService.getFileFromDir(filePath.erpSVFilePath);
+        List<File> fileListFromDir = fileService.getFileFromDir(filePath.erpSVFilePath);
           log.info("fileListFromDir = {}" + fileListFromDir);
         for(File fileName : fileListFromDir){
             log.info("erpSVFileName = {}", fileName);

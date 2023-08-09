@@ -3,6 +3,7 @@ package com.developer.monitor.domain.gwServer.controller;
 
 import com.developer.monitor.common.model.ServerFilePath;
 import com.developer.monitor.common.service.CommonService;
+import com.developer.monitor.common.service.FileService;
 import com.developer.monitor.domain.gwServer.model.MInsertGwSVClustChk;
 import com.developer.monitor.domain.gwServer.model.MInsertGwSVDiskUsage;
 import com.developer.monitor.domain.gwServer.model.MInsertGwSVMain;
@@ -27,17 +28,17 @@ public class gwSVController {
     @Autowired
     private gwSVService gwService;
     @Autowired
-    private CommonService cmnService;
+    private FileService fileService;
 
     @PostMapping("/getGwSVXmlList")
     //@Scheduled(cron = "0 */5 * * * *")
-    @Scheduled(cron = "30 * * * * *")
+    //@Scheduled(cron = "30 * * * * *")
     public void getGwSVXmlList() throws Exception{
         /**
          *  toJsonFromGwSVXmlData 여기에 insertMain / insertDisk / insertProc / insertClust 포함.
          */
         ServerFilePath filePath = new ServerFilePath();
-        List<File> fileListFromDir = cmnService.getFileFromDir(filePath.gwSVFilePath);
+        List<File> fileListFromDir = fileService.getFileFromDir(filePath.gwSVFilePath);
         for(File fileName : fileListFromDir){
             log.info("gwSVFileName = {}", fileName);
             gwService.toJsonFromGwSVXmlData(String.valueOf(fileName));
@@ -72,24 +73,16 @@ public class gwSVController {
         gwService.InsertGwSVClustData(mInsertGwSVClustChk);
         return "OK";
     }
-
-
-
-
-
-
-
-
     @RequestMapping(value = "/getCfgList", method = {RequestMethod.POST})
     public String getFileList() throws Exception {
 
 
         ServerFilePath cfgFilePath = new ServerFilePath();
-        List<File> fileFromDir = cmnService.getFileFromDir(cfgFilePath.serverCfgFilePath);
+        List<File> fileFromDir = fileService.getFileFromDir(cfgFilePath.serverCfgFilePath);
         List<String> arrayList = new ArrayList<>();
         for (File fileName : fileFromDir) {
             System.out.println("fileName = " + fileName);
-            arrayList = cmnService.makeListFromDir(fileName);
+            arrayList = fileService.makeListFromDir(fileName);
         }
 
 //        HashMap<String,String> defaultMap = new HashMap<>();

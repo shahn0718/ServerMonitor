@@ -225,7 +225,7 @@ public class gwSVRepositoryImpl implements gwSVRepository {
         for(MInsertGwSVClustChk mInsertGwSVClustChkData : insertDbClustList){
             gwMapper.insertGwSVClustData(mInsertGwSVClustChkData);
         }
-        
+
         return "InsertGwSVClustData";
     }
 }
