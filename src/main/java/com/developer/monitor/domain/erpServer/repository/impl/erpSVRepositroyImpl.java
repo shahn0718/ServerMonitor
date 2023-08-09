@@ -62,7 +62,7 @@ public class erpSVRepositroyImpl implements erpSVRepository {
     }
 
     @Override
-    public void InsertErpSVMainData(MInsertErpSVMain mInsertErpSVMain) throws Exception {
+    public String InsertErpSVMainData(MInsertErpSVMain mInsertErpSVMain) throws Exception {
 
         JsonNode erpSVInsertMainData = jsonNode;
 
@@ -76,9 +76,11 @@ public class erpSVRepositroyImpl implements erpSVRepository {
 
         erpMapper.insertErpSVMainData(mInsertErpSVMain);
         erpSVPkId = mInsertErpSVMain.getErpSVId();
+
+        return "InsertErpSVMainData";
     }
     @Override
-    public void InsertErpSVProcData(MInsertErpSVProcChk mInsertErpSVProcChk) throws Exception {
+    public String InsertErpSVProcData(MInsertErpSVProcChk mInsertErpSVProcChk) throws Exception {
 
 
         JsonNode erpSVInsertProcData = jsonNode;
@@ -109,9 +111,11 @@ public class erpSVRepositroyImpl implements erpSVRepository {
         for(MInsertErpSVProcChk mInsertErpSVProcChkData : insertDbProcList){
             erpMapper.insertErpSVProcData(mInsertErpSVProcChkData);
         }
+
+        return "InsertErpSVProcData";
     }
     @Override
-    public void InsertErpSVDiskData(MInsertErpSVDiskUsage mInsertErpSVDiskUsage) throws Exception {
+    public String InsertErpSVDiskData(MInsertErpSVDiskUsage mInsertErpSVDiskUsage) throws Exception {
 
         JsonNode erpSVInsertDiskData = jsonNode;
 
@@ -141,5 +145,7 @@ public class erpSVRepositroyImpl implements erpSVRepository {
         for(MInsertErpSVDiskUsage mInsertErpSVDiskUsageData: insertDbDiskList){
             erpMapper.insertEprSVDiskData(mInsertErpSVDiskUsageData);
         }
+
+        return "InsertErpSVDiskData";
     }
 }

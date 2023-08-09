@@ -24,13 +24,13 @@ public class erpSVService {
     public JsonNode toJsonFromErpSVXmlData(String fileName) throws Exception{
         return erpRepository.toJsonFromErpSVXmlData(fileName);
     }
-    public void InsertErpSVMainData(MInsertErpSVMain insertErpSVMain) throws Exception {
-        erpRepository.InsertErpSVMainData(insertErpSVMain);
+    public String InsertErpSVMainData(MInsertErpSVMain insertErpSVMain) throws Exception {
+        return erpRepository.InsertErpSVMainData(insertErpSVMain);
     }
-    public void InsertErpSVProcData(MInsertErpSVProcChk insertErpSVProcChk) throws Exception{
-        erpRepository.InsertErpSVProcData(insertErpSVProcChk);
+    public String InsertErpSVProcData(MInsertErpSVProcChk insertErpSVProcChk) throws Exception{
+        return erpRepository.InsertErpSVProcData(insertErpSVProcChk);
     }
-    public void InsertErpSVDiskData(MInsertErpSVDiskUsage mInsertErpSVDiskUsage) throws Exception{
-        erpRepository.InsertErpSVDiskData(mInsertErpSVDiskUsage);
+    public String InsertErpSVDiskData(MInsertErpSVDiskUsage InsertErpSVDiskUsage) throws Exception{
+        return erpRepository.InsertErpSVDiskData(InsertErpSVDiskUsage);
     }
 }

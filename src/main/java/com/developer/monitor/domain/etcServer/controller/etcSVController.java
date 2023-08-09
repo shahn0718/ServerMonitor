@@ -5,10 +5,9 @@ import com.developer.monitor.common.service.CommonService;
 import com.developer.monitor.domain.etcServer.model.MInsertEtcSVDiskUsage;
 import com.developer.monitor.domain.etcServer.model.MInsertEtcSVMain;
 import com.developer.monitor.domain.etcServer.model.MInsertEtcSVProcChk;
+
+
 import com.developer.monitor.domain.etcServer.service.etcSVService;
-
-
-import com.developer.monitor.domain.gwServer.service.gwSVService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;

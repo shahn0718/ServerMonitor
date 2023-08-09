@@ -23,10 +23,8 @@ public class erpSVController {
 
     @Autowired
     private erpSVService erpService;
-
     @Autowired
     private CommonService cmnService;
-
     @PostMapping(value= "/getErpSVXmlList")
     //@Scheduled(cron = "0 */5 * * * *")
     public void getErpSVXmlList() throws Exception {

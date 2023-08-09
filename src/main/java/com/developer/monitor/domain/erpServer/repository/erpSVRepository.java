@@ -9,7 +9,7 @@ import jakarta.xml.bind.JAXBException;
 public interface erpSVRepository {
 
     JsonNode toJsonFromErpSVXmlData(String fileName) throws Exception, JAXBException;
-    void InsertErpSVMainData(MInsertErpSVMain mInsertErpSVMain) throws Exception;
-    void InsertErpSVProcData(MInsertErpSVProcChk mInsertErpSVProcChk) throws Exception;
-    void InsertErpSVDiskData(MInsertErpSVDiskUsage mInsertErpSVDiskUsage) throws Exception;
+    String InsertErpSVMainData(MInsertErpSVMain mInsertErpSVMain) throws Exception;
+    String InsertErpSVProcData(MInsertErpSVProcChk mInsertErpSVProcChk) throws Exception;
+    String InsertErpSVDiskData(MInsertErpSVDiskUsage mInsertErpSVDiskUsage) throws Exception;
 }

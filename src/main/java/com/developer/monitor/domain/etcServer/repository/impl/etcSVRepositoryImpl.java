@@ -1,28 +1,30 @@
-package com.developer.monitor.domain.etcServer.service.impl;
+package com.developer.monitor.domain.etcServer.repository.impl;
 
-
+import com.developer.monitor.common.model.XmlRootServer;
 import com.developer.monitor.domain.etcServer.mapper.etcSVMapper;
 import com.developer.monitor.domain.etcServer.model.MInsertEtcSVDiskUsage;
 import com.developer.monitor.domain.etcServer.model.MInsertEtcSVMain;
 import com.developer.monitor.domain.etcServer.model.MInsertEtcSVProcChk;
-import com.developer.monitor.domain.etcServer.service.etcSVService;
-import com.developer.monitor.common.model.XmlRootServer;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-
+import com.developer.monitor.domain.etcServer.repository.etcSVRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.xml.bind.JAXBException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
 import java.io.FileInputStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+
 
 @Slf4j
-@Service
-public class etcSVServiceImpl implements etcSVService {
+@Repository
+public class etcSVRepositoryImpl implements etcSVRepository {
 
     @Autowired
     private etcSVMapper etcMapper;
@@ -76,7 +78,6 @@ public class etcSVServiceImpl implements etcSVService {
 
     @Override
     public String InsertEtcSVMainData(MInsertEtcSVMain mInsertEtcSVMain) throws Exception {
-
         JsonNode etcSVInsertMainData = jsonNode;
 
         mInsertEtcSVMain.setEtcSVId(mInsertEtcSVMain.getEtcSVId());
@@ -91,28 +92,27 @@ public class etcSVServiceImpl implements etcSVService {
         etcMapper.insertEtcSVMainData(mInsertEtcSVMain);
         etcSVPkId = mInsertEtcSVMain.getEtcSVId();
 
-        return "OK";
+        return "InsertEtcSVMainData";
     }
 
     @Override
     public String InsertEtcSVProcData(MInsertEtcSVProcChk mInsertEtcSVProcChk) throws Exception {
-
         JsonNode etcSVInsertProcData = jsonNode;
         JsonNode processChk = etcSVInsertProcData.findValue("processChk");
-       
+
         List<String> procJsonToList = new ArrayList<>();
         for (JsonNode jsonNode : processChk) {
             procJsonToList.add(jsonNode.asText());
         }
-        
+
         HashMap<String,String> procMap = new HashMap<>();
         for (String data : procJsonToList) {
             String[] array = data.split(",");
             procMap.put(array[0],array[1]);
         }
-        
+
         List<MInsertEtcSVProcChk> insertDbProcList = new ArrayList<>();
-        
+
         Set<String> keySet = procMap.keySet();
         for(String key: keySet){
             MInsertEtcSVProcChk mInsertEtcSVProcChkData = new MInsertEtcSVProcChk();
@@ -125,12 +125,11 @@ public class etcSVServiceImpl implements etcSVService {
         for(MInsertEtcSVProcChk mInsertEtcSVProcChkData: insertDbProcList){
             etcMapper.insertEtcSVProcData(mInsertEtcSVProcChkData);
         }
-        return "OK";
+        return "InsertEtcSVProcData";
     }
 
     @Override
     public String InsertEtcSVDiskData(MInsertEtcSVDiskUsage mInsertEtcSVDiskUsage) throws Exception {
-
         JsonNode etcSVInsertDiskData = jsonNode;
 
         JsonNode diskUsage = etcSVInsertDiskData.findValue("diskUsage");
@@ -158,15 +157,8 @@ public class etcSVServiceImpl implements etcSVService {
         for(MInsertEtcSVDiskUsage mInsertEtcSVDiskUsageData: insertDbDiskList){
             etcMapper.insertEtcSVDiskData(mInsertEtcSVDiskUsageData);
         }
-        return " ";
+
+        return "InsertEtcSVDiskData";
     }
-//    @Override
-//    public void SendFileToJson() throws Exception{
-//
-//        String filePath = "C:\\\\upIt\\\\monitor\\\\monitor\\\\xmlTestFile";
-//        List<File> fileList = common.getFileFromDir(filePath);;
-//        for(File fileName : fileList){
-//            toJsonFromEtcSVXmlData(String.valueOf(fileName));
-//        }
-//    }
+
 }
