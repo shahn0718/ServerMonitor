@@ -1,4 +1,4 @@
-package com.developer.monitor.domain.gwServer.service.impl;
+package com.developer.monitor.domain.gwServer.repository.impl;
 
 import com.developer.monitor.common.model.XmlRootServer;
 import com.developer.monitor.domain.gwServer.mapper.gwSVMapper;
@@ -6,12 +6,12 @@ import com.developer.monitor.domain.gwServer.model.MInsertGwSVClustChk;
 import com.developer.monitor.domain.gwServer.model.MInsertGwSVDiskUsage;
 import com.developer.monitor.domain.gwServer.model.MInsertGwSVMain;
 import com.developer.monitor.domain.gwServer.model.MInsertGwSVProcChk;
-import com.developer.monitor.domain.gwServer.service.gwSVService;
+import com.developer.monitor.domain.gwServer.repository.gwSVRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -22,10 +22,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-
 @Slf4j
-@Service
-public class gwSVServiceImpl implements gwSVService {
+@Repository
+public class gwSVRepositoryImpl implements gwSVRepository {
 
     @Autowired
     private gwSVMapper gwMapper;
@@ -65,11 +64,10 @@ public class gwSVServiceImpl implements gwSVService {
         InsertGwSVClustData(mInsertGwSVClustChk);
 
         return jsonMainGwData;
-
     }
 
     @Override
-    public void InsertGwSVMainData(MInsertGwSVMain mInsertGwSVMain) throws Exception {
+    public String InsertGwSVMainData(MInsertGwSVMain mInsertGwSVMain) throws Exception {
 
         JsonNode gwSVInsertMainData = jsonNode;
 
@@ -84,10 +82,12 @@ public class gwSVServiceImpl implements gwSVService {
 
         gwMapper.insertGwSVMainData(mInsertGwSVMain);
         gwSVPkId = mInsertGwSVMain.getGwSVId();
-    }
-    @Override
-    public void InsertGwSVProcData(MInsertGwSVProcChk mInsertGwSVProcChk) throws Exception {
 
+        return "InsertGwSVMainData";
+    }
+
+    @Override
+    public String InsertGwSVProcData(MInsertGwSVProcChk mInsertGwSVProcChk) throws Exception {
         JsonNode gwSVInsertProcData = jsonNode;
         JsonNode processChk = gwSVInsertProcData.findValue("processChk");
 
@@ -121,11 +121,11 @@ public class gwSVServiceImpl implements gwSVService {
         for(MInsertGwSVProcChk mInsertGwSVProcChkData : insertDbProcList){
             gwMapper.insertGwSVProcData(mInsertGwSVProcChkData);
         }
+        return "InsertGwSVProcData";
     }
 
     @Override
-    public void InsertGwSVDiskData(MInsertGwSVDiskUsage mInsertGwSVDiskUsage) throws Exception {
-
+    public String InsertGwSVDiskData(MInsertGwSVDiskUsage mInsertGwSVDiskUsage) throws Exception {
         JsonNode gwSVInsertDiskData = jsonNode;
         JsonNode diskUsage = gwSVInsertDiskData.findValue("diskUsage");
 
@@ -156,11 +156,12 @@ public class gwSVServiceImpl implements gwSVService {
         for(MInsertGwSVDiskUsage mInsertGwSVDiskUsageData : insertDbDiskList){
             gwMapper.insertGwSVDiskData(mInsertGwSVDiskUsageData);
         }
+
+        return "InsertGwSVDiskData";
     }
 
     @Override
-    public void InsertGwSVClustData(MInsertGwSVClustChk mInsertGwSVClustChk) throws Exception {
-
+    public String InsertGwSVClustData(MInsertGwSVClustChk mInsertGwSVClustChk) throws Exception {
         /**
          * <cluster_chk>kube-system,coredns-6f57957999-bl8fh,Pending</cluster_chk>
          * status 가 정상적인상태 (Running or Completed) 에서는 항목이 생성 안됨, 다른 상태값이 있을 경우만 생성되는 케이스
@@ -224,5 +225,7 @@ public class gwSVServiceImpl implements gwSVService {
         for(MInsertGwSVClustChk mInsertGwSVClustChkData : insertDbClustList){
             gwMapper.insertGwSVClustData(mInsertGwSVClustChkData);
         }
+        
+        return "InsertGwSVClustData";
     }
 }
