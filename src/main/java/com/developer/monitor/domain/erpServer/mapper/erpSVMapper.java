@@ -3,6 +3,7 @@ package com.developer.monitor.domain.erpServer.mapper;
 import com.developer.monitor.domain.erpServer.model.MInsertErpSVDiskUsage;
 import com.developer.monitor.domain.erpServer.model.MInsertErpSVMain;
 import com.developer.monitor.domain.erpServer.model.MInsertErpSVProcChk;
+import jakarta.annotation.Resource;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

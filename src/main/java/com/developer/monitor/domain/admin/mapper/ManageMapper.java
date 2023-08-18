@@ -1,6 +1,7 @@
 package com.developer.monitor.domain.admin.mapper;
 
 import com.developer.monitor.domain.admin.model.MmanageMain;
+import jakarta.annotation.Resource;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

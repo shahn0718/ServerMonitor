@@ -38,7 +38,7 @@ public class gwSVController {
          *  toJsonFromGwSVXmlData 여기에 insertMain / insertDisk / insertProc / insertClust 포함.
          */
         ServerFilePath filePath = new ServerFilePath();
-        List<File> fileListFromDir = fileService.getFileFromDir(filePath.gwSVFilePath);
+        List<File> fileListFromDir = this.fileService.getFileFromDir(filePath.gwSVFilePath);
         for(File fileName : fileListFromDir){
             log.info("gwSVFileName = {}", fileName);
             gwService.toJsonFromGwSVXmlData(String.valueOf(fileName));

@@ -23,7 +23,8 @@ import java.util.Set;
 
 @Slf4j
 @Repository
-public class erpSVRepositroyImpl implements erpSVRepository {
+public class erpSVRepositoryImpl implements erpSVRepository {
+
 
     @Autowired
     private erpSVMapper erpMapper;

@@ -13,7 +13,6 @@ import java.util.*;
 @Slf4j
 public class MemberRepositoryImpl implements MemberRepository {
 
-
     @Autowired
     private MemberMapper memberMapper;
     private static Map<Long, MadminMemberMain> memberInfo = new HashMap<>();
@@ -36,7 +35,7 @@ public class MemberRepositoryImpl implements MemberRepository {
     @Override
     public Optional<MadminMemberMain> findByName(String adminEmpName) {
 
-        MadminMemberMain findMemberByName = memberMapper.findMemberByName(adminEmpName);
+        MadminMemberMain findMemberByName = this.memberMapper.findMemberByName(adminEmpName);
         log.info("findMemberByName = {}", findMemberByName);
         return memberInfo.values().stream()
                 .filter(memberInfo -> memberInfo.getAdmin_nm().equals(adminEmpName))

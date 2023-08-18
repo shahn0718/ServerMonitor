@@ -16,11 +16,11 @@ import java.util.Optional;
 @Slf4j
 public class ManageRepositoryImpl implements ManageRepository {
 
+
     @Autowired
     private ManageMapper manageMapper;
     private static Map<Long, MmanageMain> manageInfo = new HashMap<>();
     private static long manageId;
-
     @Override
     public MmanageMain createManageList(MmanageMain mmanageMain) {
 

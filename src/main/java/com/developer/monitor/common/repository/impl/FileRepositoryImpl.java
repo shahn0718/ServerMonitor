@@ -1,6 +1,9 @@
 package com.developer.monitor.common.repository.impl;
 
 import com.developer.monitor.common.repository.FileRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,6 +13,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+
+@Slf4j
+@Repository
 public class FileRepositoryImpl implements FileRepository {
     @Override
     public List<File> getFileFromDir(String filePath) {

@@ -2,6 +2,7 @@ package com.developer.monitor.domain.admin.mapper;
 
 
 import com.developer.monitor.domain.admin.model.MadminMemberMain;
+import jakarta.annotation.Resource;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

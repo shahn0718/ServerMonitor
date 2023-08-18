@@ -32,6 +32,11 @@ dependencies {
 	implementation 'javax.activation:activation:1.1.1'
 	implementation 'com.sun.xml.bind:jaxb1-impl:2.2.5.1'
 	implementation 'org.glassfish:jsonp-jaxrs-1x:1.1.6'
+
+
+
+
+
 	testImplementation 'junit:junit:4.13.1'
 
     compileOnly 'org.projectlombok:lombok'

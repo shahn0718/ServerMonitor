@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.List;
 
 public interface FileRepository {
-
     /**
      *  getFileFromDIr
      *  폴더 내, 파일목록 리스트화

@@ -4,6 +4,7 @@ import com.developer.monitor.domain.gwServer.model.MInsertGwSVClustChk;
 import com.developer.monitor.domain.gwServer.model.MInsertGwSVDiskUsage;
 import com.developer.monitor.domain.gwServer.model.MInsertGwSVMain;
 import com.developer.monitor.domain.gwServer.model.MInsertGwSVProcChk;
+import jakarta.annotation.Resource;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
