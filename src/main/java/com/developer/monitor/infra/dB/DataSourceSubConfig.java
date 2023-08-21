@@ -16,19 +16,19 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(value="", sqlSessionFactoryRef = "subSqlSessionFactory")
+@MapperScan(value="com.developer.monitor.infra.sms.mapper", sqlSessionFactoryRef = "subSqlSessionFactory")
 public class DataSourceSubConfig {
 
     private final String SUB_DATASOURCE = "subDataSource";
 
     @Bean(SUB_DATASOURCE)
-    @ConfigurationProperties(prefix="")
+    @ConfigurationProperties(prefix="spring.test-b.datasource")
     public DataSource subDataSource(){
         return DataSourceBuilder.create().build();
     }
 
     @Bean
-    public SqlSessionFactory subSessionFactory(@Qualifier(SUB_DATASOURCE) DataSource subDataSource) throws Exception{
+    public SqlSessionFactory subSqlSessionFactory(@Qualifier(SUB_DATASOURCE) DataSource subDataSource) throws Exception{
 
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(subDataSource);

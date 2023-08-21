@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.developer.monitor.infra.sms.mapper.smsMapper">
+
+    <insert id="saveMember" parameterType="com.developer.monitor.infra.sms.model.MSmsMember"
+            useGeneratedKeys="true" keyProperty="test_userId">
+        /* saveMember : */
+
+        INSERT INTO  TEST_USER (
+
+         TEST_USERID
+        ,TEST_USERNM
+        ,TEST_USERNO
+
+        ) VALUES (
+        (SELECT MAX(TEST_USERID)+1 FROM TEST_USER AS TEST_USERID)
+        ,#{test_userNm}
+        ,#{test_userNo}
+        )
+    </insert>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

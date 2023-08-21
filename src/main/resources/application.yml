@@ -8,7 +8,7 @@ spring:
     test-b:
       datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        jdbc-url: jdbc:mysql://localhost:3306/servermonitor?serverTimezone=UTC&characterEncoding=UTF-8
+        jdbc-url: jdbc:mysql://localhost:3306/testmonitor?serverTimezone=UTC&characterEncoding=UTF-8
         username: root
         password: admin
 #mybatis:
